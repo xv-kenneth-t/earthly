@@ -180,6 +180,12 @@ func (vm *vertexMonitor) Write(dt []byte, ts time.Time, stream int) (int, error)
 	if stream == BuildkitStatsStream {
 		stats, err := vm.ssp.Parse(dt)
 		if err != nil {
+			if _, ok := err.(*json.SyntaxError); ok {
+				// HACK: suppressing json.SyntaxError such as the `invalid character xxx`
+				// hopefully this does not break anything significant
+				return 0, nil
+			}
+
 			return 0, errors.Wrap(err, "failed decoding stats stream")
 		}
 		for _, statsSample := range stats {
