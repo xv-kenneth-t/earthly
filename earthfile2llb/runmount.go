@@ -191,6 +191,29 @@ func (c *Converter) parseMount(mount string) ([]llb.RunOption, error) {
 			llb.SecretFileOpt(0, 0, mountMode),
 		}
 		return []llb.RunOption{llb.AddSecret(mountTarget, secretOpts...)}, nil
+	case "socket":
+		if mountSource != "" {
+			return nil, errors.Errorf("mount source is not used for mount type socket")
+		}
+
+		if mountTarget == "" {
+			return nil, errors.Errorf("mount target not specified")
+		}
+
+		socketID := mountID
+		if socketID == "" {
+			socketID = path.Clean(mountTarget)
+		}
+
+		if strings.HasPrefix(socketID, "earthly_") {
+			return nil, errors.Errorf("socket id cannot start with 'earthly_'")
+		}
+
+		if mountMode == 0 {
+			mountMode = 0600
+		}
+
+		return []llb.RunOption{llb.SocketTarget(socketID, mountTarget, mountMode, 0, 0)}, nil
 	default:
 		return nil, errors.Errorf("invalid mount type %s", mountType)
 	}

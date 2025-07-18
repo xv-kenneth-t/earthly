@@ -36,7 +36,7 @@ import (
 )
 
 var (
-	runExitCodeRegex   = regexp.MustCompile(`did not complete successfully: exit code: [^0][0-9]*($|[\n\t]+in\s+.*?\+.+)`)
+	runExitCodeRegex   = regexp.MustCompile(`did not complete successfully: exit code: (?P<ExitCode>[^0][0-9]*($|[\n\t]+in\s+.*?\+.+))`)
 	notFoundRegex      = regexp.MustCompile(`("[^"]*"): not found`)
 	qemuExitCodeRegex  = regexp.MustCompile(`process "/dev/.buildkit_qemu_emulator.*?did not complete successfully: exit code: 255$`)
 	buildMinutesRegex  = regexp.MustCompile(`(?P<msg>used \d+ of \d+ allowed minutes in current plan) {reqID: .*?}`)
@@ -231,6 +231,11 @@ func (app *EarthlyApp) run(ctx context.Context, args []string, lastSignal *syncu
 			)
 			return 255
 		case runExitCodeRegex.MatchString(err.Error()):
+			exitCode := 1
+			if code, err := strconv.Atoi(runExitCodeRegex.FindStringSubmatch(err.Error())[1]); err == nil {
+				exitCode = code
+			}
+
 			var helpMsg string
 			if !app.BaseCLI.Flags().InteractiveDebugging && len(args) > 0 {
 				args = append([]string{args[0], "-i"}, args[1:]...)
@@ -248,7 +253,7 @@ func (app *EarthlyApp) run(ctx context.Context, args []string, lastSignal *syncu
 				helpMsg,
 				err.Error(),
 			)
-			return 1
+			return exitCode
 		case strings.Contains(err.Error(), "security.insecure is not allowed"):
 			helpMsg := "earthly --allow-privileged (earthly -P) flag is required\n"
 			app.BaseCLI.Logbus().Run().SetGenericFatalError(

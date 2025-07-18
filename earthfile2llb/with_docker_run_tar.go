@@ -165,6 +165,7 @@ func (w *withDockerRunTar) Run(ctx context.Context, args []string, opt WithDocke
 		WithEntrypoint:       opt.WithEntrypoint,
 		WithShell:            opt.WithShell,
 		Privileged:           true, // needed for dockerd
+		WithGPG:              opt.WithGPG,
 		WithSSH:              opt.WithSSH,
 		NoCache:              opt.NoCache,
 		Interactive:          opt.Interactive,

@@ -39,6 +39,7 @@ type Global struct {
 	GitPasswordOverride        string
 	GitBranchOverride          string
 	ExecStatsSummary           string
+	GPGAgentSock               string
 	SSHAuthSock                string
 	Verbose                    bool
 	Debug                      bool
@@ -121,6 +122,13 @@ func (global *Global) RootFlags(installName string, bkImage string) []cli.Flag {
 			EnvVars:     []string{"EARTHLY_CONFIG"},
 			Usage:       "Path to config file",
 			Destination: &global.ConfigPath,
+		},
+		&cli.StringFlag{
+			Name:        "gpg-agent-sock",
+			Value:       os.Getenv("GPG_AGENT_SOCK"),
+			EnvVars:     []string{"EARTHLY_GPG_AGENT_SOCK"},
+			Usage:       "The GPG agent socket to use for gpg-agent forwarding",
+			Destination: &global.GPGAgentSock,
 		},
 		&cli.StringFlag{
 			Name:        "ssh-auth-sock",

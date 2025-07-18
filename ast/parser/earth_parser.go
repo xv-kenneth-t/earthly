@@ -1,13 +1,13 @@
-// Code generated from ast/parser/EarthParser.g4 by ANTLR 4.12.0. DO NOT EDIT.
+// Code generated from ast/parser/EarthParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
 package parser // EarthParser
 
 import (
 	"fmt"
 	"strconv"
-  "sync"
+  	"sync"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/antlr4-go/antlr/v4"
 )
 
 // Suppress unused import errors
@@ -20,20 +20,20 @@ type EarthParser struct {
 	*antlr.BaseParser
 }
 
-var earthparserParserStaticData struct {
+var EarthParserParserStaticData struct {
   once                   sync.Once
   serializedATN          []int32
-  literalNames           []string
-  symbolicNames          []string
-  ruleNames              []string
-  predictionContextCache *antlr.PredictionContextCache
+  LiteralNames           []string
+  SymbolicNames          []string
+  RuleNames              []string
+  PredictionContextCache *antlr.PredictionContextCache
   atn                    *antlr.ATN
   decisionToDFA          []*antlr.DFA
 }
 
 func earthparserParserInit() {
-  staticData := &earthparserParserStaticData
-  staticData.literalNames = []string{
+  staticData := &EarthParserParserStaticData
+  staticData.LiteralNames = []string{
     "", "", "", "", "", "", "'FROM'", "'FROM DOCKERFILE'", "'LOCALLY'", 
     "'COPY'", "'SAVE ARTIFACT'", "'SAVE IMAGE'", "'RUN'", "'EXPOSE'", "'VOLUME'", 
     "'ENV'", "'ARG'", "'SET'", "'LET'", "'LABEL'", "'BUILD'", "'WORKDIR'", 
@@ -43,7 +43,7 @@ func earthparserParserInit() {
     "", "", "", "", "", "", "", "", "'ELSE'", "'ELSE IF'", "'CATCH'", "'FINALLY'", 
     "'END'",
   }
-  staticData.symbolicNames = []string{
+  staticData.SymbolicNames = []string{
     "", "INDENT", "DEDENT", "Target", "UserCommand", "Function", "FROM", 
     "FROM_DOCKERFILE", "LOCALLY", "COPY", "SAVE_ARTIFACT", "SAVE_IMAGE", 
     "RUN", "EXPOSE", "VOLUME", "ENV", "ARG", "SET", "LET", "LABEL", "BUILD", 
@@ -53,7 +53,7 @@ func earthparserParserInit() {
     "FOR", "WAIT", "NL", "WS", "COMMENT", "ELSE", "ELSE_IF", "CATCH", "FINALLY", 
     "END", "Atom", "EQUALS",
   }
-  staticData.ruleNames = []string{
+  staticData.RuleNames = []string{
     "earthFile", "targets", "targetOrUserCommand", "target", "targetHeader", 
     "userCommand", "userCommandHeader", "function", "functionHeader", "stmts", 
     "stmt", "commandStmt", "version", "withStmt", "withBlock", "withExpr", 
@@ -71,7 +71,7 @@ func earthparserParserInit() {
     "importStmt", "cacheStmt", "hostStmt", "projectStmt", "expr", "stmtWordsMaybeJSON", 
     "stmtWords", "stmtWord",
   }
-  staticData.predictionContextCache = antlr.NewPredictionContextCache()
+  staticData.PredictionContextCache = antlr.NewPredictionContextCache()
   staticData.serializedATN = []int32{
 	4, 1, 54, 741, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7, 
 	4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7, 
@@ -425,7 +425,7 @@ func earthparserParserInit() {
 // NewEarthParser(). You can call this function if you wish to initialize the static state ahead
 // of time.
 func EarthParserInit() {
-  staticData := &earthparserParserStaticData
+  staticData := &EarthParserParserStaticData
   staticData.once.Do(earthparserParserInit)
 }
 
@@ -434,11 +434,11 @@ func NewEarthParser(input antlr.TokenStream) *EarthParser {
 	EarthParserInit()
 	this := new(EarthParser)
 	this.BaseParser = antlr.NewBaseParser(input)
-  staticData := &earthparserParserStaticData
-	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.predictionContextCache)
-	this.RuleNames = staticData.ruleNames
-	this.LiteralNames = staticData.literalNames
-	this.SymbolicNames = staticData.symbolicNames
+  staticData := &EarthParserParserStaticData
+	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
+	this.RuleNames = staticData.RuleNames
+	this.LiteralNames = staticData.LiteralNames
+	this.SymbolicNames = staticData.SymbolicNames
 	this.GrammarFileName = "EarthParser.g4"
 
 	return this
@@ -612,15 +612,20 @@ type IEarthFileContext interface {
 }
 
 type EarthFileContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyEarthFileContext() *EarthFileContext {
 	var p = new(EarthFileContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_earthFile
 	return p
+}
+
+func InitEmptyEarthFileContext(p *EarthFileContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_earthFile
 }
 
 func (*EarthFileContext) IsEarthFileContext() {}
@@ -628,7 +633,7 @@ func (*EarthFileContext) IsEarthFileContext() {}
 func NewEarthFileContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *EarthFileContext {
 	var p = new(EarthFileContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_earthFile
@@ -723,52 +728,50 @@ func (s *EarthFileContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) EarthFile() (localctx IEarthFileContext) {
-	this := p
-	_ = this
-
 	localctx = NewEarthFileContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, EarthParserRULE_earthFile)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
 	p.SetState(171)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 0, p.GetParserRuleContext())
-
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 0, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
 				p.SetState(168)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 		}
 		p.SetState(173)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 0, p.GetParserRuleContext())
+		if p.HasError() {
+	    	goto errorExit
+	    }
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 0, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 	p.SetState(175)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -781,6 +784,9 @@ func (p *EarthParser) EarthFile() (localctx IEarthFileContext) {
 	}
 	p.SetState(180)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -792,28 +798,50 @@ func (p *EarthParser) EarthFile() (localctx IEarthFileContext) {
 		{
 			p.SetState(178)
 			p.Match(EarthParserNL)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 	}
 	p.SetState(185)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 3, p.GetParserRuleContext())
-
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 3, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
 				p.SetState(182)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 		}
 		p.SetState(187)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 3, p.GetParserRuleContext())
+		if p.HasError() {
+	    	goto errorExit
+	    }
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 3, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 	p.SetState(189)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -826,6 +854,9 @@ func (p *EarthParser) EarthFile() (localctx IEarthFileContext) {
 	}
 	p.SetState(194)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -833,21 +864,42 @@ func (p *EarthParser) EarthFile() (localctx IEarthFileContext) {
 		{
 			p.SetState(191)
 			p.Match(EarthParserNL)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 
 		p.SetState(196)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+	    	goto errorExit
+	    }
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(197)
 		p.Match(EarthParserEOF)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -869,15 +921,20 @@ type ITargetsContext interface {
 }
 
 type TargetsContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyTargetsContext() *TargetsContext {
 	var p = new(TargetsContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_targets
 	return p
+}
+
+func InitEmptyTargetsContext(p *TargetsContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_targets
 }
 
 func (*TargetsContext) IsTargetsContext() {}
@@ -885,7 +942,7 @@ func (*TargetsContext) IsTargetsContext() {}
 func NewTargetsContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TargetsContext {
 	var p = new(TargetsContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_targets
@@ -969,29 +1026,9 @@ func (s *TargetsContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) Targets() (localctx ITargetsContext) {
-	this := p
-	_ = this
-
 	localctx = NewTargetsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 2, EarthParserRULE_targets)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	var _alt int
 
@@ -1002,12 +1039,20 @@ func (p *EarthParser) Targets() (localctx ITargetsContext) {
 	}
 	p.SetState(209)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 7, p.GetParserRuleContext())
-
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 7, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			p.SetState(203)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
 			_la = p.GetTokenStream().LA(1)
 
 
@@ -1015,11 +1060,18 @@ func (p *EarthParser) Targets() (localctx ITargetsContext) {
 				{
 					p.SetState(200)
 					p.Match(EarthParserNL)
+					if p.HasError() {
+							// Recognition error - abort rule
+							goto errorExit
+					}
 				}
 
 
 				p.SetState(205)
 				p.GetErrorHandler().Sync(p)
+				if p.HasError() {
+			    	goto errorExit
+			    }
 				_la = p.GetTokenStream().LA(1)
 			}
 			{
@@ -1031,12 +1083,28 @@ func (p *EarthParser) Targets() (localctx ITargetsContext) {
 		}
 		p.SetState(211)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 7, p.GetParserRuleContext())
+		if p.HasError() {
+	    	goto errorExit
+	    }
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 7, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -1056,15 +1124,20 @@ type ITargetOrUserCommandContext interface {
 }
 
 type TargetOrUserCommandContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyTargetOrUserCommandContext() *TargetOrUserCommandContext {
 	var p = new(TargetOrUserCommandContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_targetOrUserCommand
 	return p
+}
+
+func InitEmptyTargetOrUserCommandContext(p *TargetOrUserCommandContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_targetOrUserCommand
 }
 
 func (*TargetOrUserCommandContext) IsTargetOrUserCommandContext() {}
@@ -1072,7 +1145,7 @@ func (*TargetOrUserCommandContext) IsTargetOrUserCommandContext() {}
 func NewTargetOrUserCommandContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TargetOrUserCommandContext {
 	var p = new(TargetOrUserCommandContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_targetOrUserCommand
@@ -1139,30 +1212,13 @@ func (s *TargetOrUserCommandContext) ExitRule(listener antlr.ParseTreeListener) 
 
 
 func (p *EarthParser) TargetOrUserCommand() (localctx ITargetOrUserCommandContext) {
-	this := p
-	_ = this
-
 	localctx = NewTargetOrUserCommandContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 4, EarthParserRULE_targetOrUserCommand)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(214)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case EarthParserTarget:
@@ -1183,11 +1239,22 @@ func (p *EarthParser) TargetOrUserCommand() (localctx ITargetOrUserCommandContex
 
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -1211,15 +1278,20 @@ type ITargetContext interface {
 }
 
 type TargetContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyTargetContext() *TargetContext {
 	var p = new(TargetContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_target
 	return p
+}
+
+func InitEmptyTargetContext(p *TargetContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_target
 }
 
 func (*TargetContext) IsTargetContext() {}
@@ -1227,7 +1299,7 @@ func (*TargetContext) IsTargetContext() {}
 func NewTargetContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TargetContext {
 	var p = new(TargetContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_target
@@ -1310,29 +1382,9 @@ func (s *TargetContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) Target() (localctx ITargetContext) {
-	this := p
-	_ = this
-
 	localctx = NewTargetContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 6, EarthParserRULE_target)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	var _alt int
 
@@ -1343,6 +1395,9 @@ func (p *EarthParser) Target() (localctx ITargetContext) {
 	}
 	p.SetState(218)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_alt = 1
 	for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		switch _alt {
@@ -1350,21 +1405,32 @@ func (p *EarthParser) Target() (localctx ITargetContext) {
 				{
 					p.SetState(217)
 					p.Match(EarthParserNL)
+					if p.HasError() {
+							// Recognition error - abort rule
+							goto errorExit
+					}
 				}
 
 
 
 
 		default:
-			panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+			p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+			goto errorExit
 		}
 
 		p.SetState(220)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 9, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 9, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 	p.SetState(238)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -1372,26 +1438,48 @@ func (p *EarthParser) Target() (localctx ITargetContext) {
 		{
 			p.SetState(222)
 			p.Match(EarthParserINDENT)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 		p.SetState(226)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 10, p.GetParserRuleContext())
-
+		if p.HasError() {
+			goto errorExit
+		}
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 10, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 		for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 			if _alt == 1 {
 				{
 					p.SetState(223)
 					p.Match(EarthParserNL)
+					if p.HasError() {
+							// Recognition error - abort rule
+							goto errorExit
+					}
 				}
 
 
 			}
 			p.SetState(228)
 			p.GetErrorHandler().Sync(p)
-			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 10, p.GetParserRuleContext())
+			if p.HasError() {
+		    	goto errorExit
+		    }
+			_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 10, p.GetParserRuleContext())
+			if p.HasError() {
+				goto errorExit
+			}
 		}
 		p.SetState(230)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -1404,6 +1492,9 @@ func (p *EarthParser) Target() (localctx ITargetContext) {
 		}
 		p.SetState(233)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -1411,23 +1502,44 @@ func (p *EarthParser) Target() (localctx ITargetContext) {
 			{
 				p.SetState(232)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(235)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
 			p.SetState(237)
 			p.Match(EarthParserDEDENT)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -1446,15 +1558,20 @@ type ITargetHeaderContext interface {
 }
 
 type TargetHeaderContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyTargetHeaderContext() *TargetHeaderContext {
 	var p = new(TargetHeaderContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_targetHeader
 	return p
+}
+
+func InitEmptyTargetHeaderContext(p *TargetHeaderContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_targetHeader
 }
 
 func (*TargetHeaderContext) IsTargetHeaderContext() {}
@@ -1462,7 +1579,7 @@ func (*TargetHeaderContext) IsTargetHeaderContext() {}
 func NewTargetHeaderContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TargetHeaderContext {
 	var p = new(TargetHeaderContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_targetHeader
@@ -1501,37 +1618,31 @@ func (s *TargetHeaderContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) TargetHeader() (localctx ITargetHeaderContext) {
-	this := p
-	_ = this
-
 	localctx = NewTargetHeaderContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 8, EarthParserRULE_targetHeader)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(240)
 		p.Match(EarthParserTarget)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -1555,15 +1666,20 @@ type IUserCommandContext interface {
 }
 
 type UserCommandContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyUserCommandContext() *UserCommandContext {
 	var p = new(UserCommandContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_userCommand
 	return p
+}
+
+func InitEmptyUserCommandContext(p *UserCommandContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_userCommand
 }
 
 func (*UserCommandContext) IsUserCommandContext() {}
@@ -1571,7 +1687,7 @@ func (*UserCommandContext) IsUserCommandContext() {}
 func NewUserCommandContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *UserCommandContext {
 	var p = new(UserCommandContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_userCommand
@@ -1654,29 +1770,9 @@ func (s *UserCommandContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) UserCommand() (localctx IUserCommandContext) {
-	this := p
-	_ = this
-
 	localctx = NewUserCommandContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 10, EarthParserRULE_userCommand)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	var _alt int
 
@@ -1687,6 +1783,9 @@ func (p *EarthParser) UserCommand() (localctx IUserCommandContext) {
 	}
 	p.SetState(244)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_alt = 1
 	for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		switch _alt {
@@ -1694,21 +1793,32 @@ func (p *EarthParser) UserCommand() (localctx IUserCommandContext) {
 				{
 					p.SetState(243)
 					p.Match(EarthParserNL)
+					if p.HasError() {
+							// Recognition error - abort rule
+							goto errorExit
+					}
 				}
 
 
 
 
 		default:
-			panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+			p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+			goto errorExit
 		}
 
 		p.SetState(246)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 14, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 14, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 	p.SetState(263)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -1716,9 +1826,16 @@ func (p *EarthParser) UserCommand() (localctx IUserCommandContext) {
 		{
 			p.SetState(248)
 			p.Match(EarthParserINDENT)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 		p.SetState(252)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -1726,11 +1843,18 @@ func (p *EarthParser) UserCommand() (localctx IUserCommandContext) {
 			{
 				p.SetState(249)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(254)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -1739,6 +1863,9 @@ func (p *EarthParser) UserCommand() (localctx IUserCommandContext) {
 		}
 		p.SetState(257)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -1746,23 +1873,44 @@ func (p *EarthParser) UserCommand() (localctx IUserCommandContext) {
 			{
 				p.SetState(256)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(259)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
 			p.SetState(261)
 			p.Match(EarthParserDEDENT)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -1781,15 +1929,20 @@ type IUserCommandHeaderContext interface {
 }
 
 type UserCommandHeaderContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyUserCommandHeaderContext() *UserCommandHeaderContext {
 	var p = new(UserCommandHeaderContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_userCommandHeader
 	return p
+}
+
+func InitEmptyUserCommandHeaderContext(p *UserCommandHeaderContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_userCommandHeader
 }
 
 func (*UserCommandHeaderContext) IsUserCommandHeaderContext() {}
@@ -1797,7 +1950,7 @@ func (*UserCommandHeaderContext) IsUserCommandHeaderContext() {}
 func NewUserCommandHeaderContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *UserCommandHeaderContext {
 	var p = new(UserCommandHeaderContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_userCommandHeader
@@ -1836,37 +1989,31 @@ func (s *UserCommandHeaderContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) UserCommandHeader() (localctx IUserCommandHeaderContext) {
-	this := p
-	_ = this
-
 	localctx = NewUserCommandHeaderContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 12, EarthParserRULE_userCommandHeader)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(265)
 		p.Match(EarthParserUserCommand)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -1890,15 +2037,20 @@ type IFunctionContext interface {
 }
 
 type FunctionContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyFunctionContext() *FunctionContext {
 	var p = new(FunctionContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_function
 	return p
+}
+
+func InitEmptyFunctionContext(p *FunctionContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_function
 }
 
 func (*FunctionContext) IsFunctionContext() {}
@@ -1906,7 +2058,7 @@ func (*FunctionContext) IsFunctionContext() {}
 func NewFunctionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *FunctionContext {
 	var p = new(FunctionContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_function
@@ -1989,29 +2141,9 @@ func (s *FunctionContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) Function() (localctx IFunctionContext) {
-	this := p
-	_ = this
-
 	localctx = NewFunctionContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 14, EarthParserRULE_function)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
@@ -2020,6 +2152,9 @@ func (p *EarthParser) Function() (localctx IFunctionContext) {
 	}
 	p.SetState(269)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -2027,15 +2162,25 @@ func (p *EarthParser) Function() (localctx IFunctionContext) {
 		{
 			p.SetState(268)
 			p.Match(EarthParserNL)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 
 		p.SetState(271)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+	    	goto errorExit
+	    }
 		_la = p.GetTokenStream().LA(1)
 	}
 	p.SetState(288)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -2043,9 +2188,16 @@ func (p *EarthParser) Function() (localctx IFunctionContext) {
 		{
 			p.SetState(273)
 			p.Match(EarthParserINDENT)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 		p.SetState(277)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -2053,11 +2205,18 @@ func (p *EarthParser) Function() (localctx IFunctionContext) {
 			{
 				p.SetState(274)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(279)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -2066,6 +2225,9 @@ func (p *EarthParser) Function() (localctx IFunctionContext) {
 		}
 		p.SetState(282)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -2073,23 +2235,44 @@ func (p *EarthParser) Function() (localctx IFunctionContext) {
 			{
 				p.SetState(281)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(284)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
 			p.SetState(286)
 			p.Match(EarthParserDEDENT)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -2108,15 +2291,20 @@ type IFunctionHeaderContext interface {
 }
 
 type FunctionHeaderContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyFunctionHeaderContext() *FunctionHeaderContext {
 	var p = new(FunctionHeaderContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_functionHeader
 	return p
+}
+
+func InitEmptyFunctionHeaderContext(p *FunctionHeaderContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_functionHeader
 }
 
 func (*FunctionHeaderContext) IsFunctionHeaderContext() {}
@@ -2124,7 +2312,7 @@ func (*FunctionHeaderContext) IsFunctionHeaderContext() {}
 func NewFunctionHeaderContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *FunctionHeaderContext {
 	var p = new(FunctionHeaderContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_functionHeader
@@ -2163,37 +2351,31 @@ func (s *FunctionHeaderContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) FunctionHeader() (localctx IFunctionHeaderContext) {
-	this := p
-	_ = this
-
 	localctx = NewFunctionHeaderContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 16, EarthParserRULE_functionHeader)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(290)
 		p.Match(EarthParserFunction)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -2215,15 +2397,20 @@ type IStmtsContext interface {
 }
 
 type StmtsContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyStmtsContext() *StmtsContext {
 	var p = new(StmtsContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_stmts
 	return p
+}
+
+func InitEmptyStmtsContext(p *StmtsContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_stmts
 }
 
 func (*StmtsContext) IsStmtsContext() {}
@@ -2231,7 +2418,7 @@ func (*StmtsContext) IsStmtsContext() {}
 func NewStmtsContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *StmtsContext {
 	var p = new(StmtsContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_stmts
@@ -2315,29 +2502,9 @@ func (s *StmtsContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) Stmts() (localctx IStmtsContext) {
-	this := p
-	_ = this
-
 	localctx = NewStmtsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 18, EarthParserRULE_stmts)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	var _alt int
 
@@ -2348,12 +2515,20 @@ func (p *EarthParser) Stmts() (localctx IStmtsContext) {
 	}
 	p.SetState(301)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 23, p.GetParserRuleContext())
-
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 23, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			p.SetState(294)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
 			_la = p.GetTokenStream().LA(1)
 
 
@@ -2361,11 +2536,18 @@ func (p *EarthParser) Stmts() (localctx IStmtsContext) {
 				{
 					p.SetState(293)
 					p.Match(EarthParserNL)
+					if p.HasError() {
+							// Recognition error - abort rule
+							goto errorExit
+					}
 				}
 
 
 				p.SetState(296)
 				p.GetErrorHandler().Sync(p)
+				if p.HasError() {
+			    	goto errorExit
+			    }
 				_la = p.GetTokenStream().LA(1)
 			}
 			{
@@ -2377,12 +2559,28 @@ func (p *EarthParser) Stmts() (localctx IStmtsContext) {
 		}
 		p.SetState(303)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 23, p.GetParserRuleContext())
+		if p.HasError() {
+	    	goto errorExit
+	    }
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 23, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -2406,15 +2604,20 @@ type IStmtContext interface {
 }
 
 type StmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyStmtContext() *StmtContext {
 	var p = new(StmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_stmt
 	return p
+}
+
+func InitEmptyStmtContext(p *StmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_stmt
 }
 
 func (*StmtContext) IsStmtContext() {}
@@ -2422,7 +2625,7 @@ func (*StmtContext) IsStmtContext() {}
 func NewStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *StmtContext {
 	var p = new(StmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_stmt
@@ -2553,30 +2756,13 @@ func (s *StmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) Stmt() (localctx IStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 20, EarthParserRULE_stmt)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(310)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case EarthParserFROM, EarthParserFROM_DOCKERFILE, EarthParserLOCALLY, EarthParserCOPY, EarthParserSAVE_ARTIFACT, EarthParserSAVE_IMAGE, EarthParserRUN, EarthParserEXPOSE, EarthParserVOLUME, EarthParserENV, EarthParserARG, EarthParserSET, EarthParserLET, EarthParserLABEL, EarthParserBUILD, EarthParserWORKDIR, EarthParserUSER, EarthParserCMD, EarthParserENTRYPOINT, EarthParserGIT_CLONE, EarthParserADD, EarthParserSTOPSIGNAL, EarthParserONBUILD, EarthParserHEALTHCHECK, EarthParserSHELL, EarthParserDO, EarthParserCOMMAND, EarthParserFUNCTION, EarthParserIMPORT, EarthParserCACHE, EarthParserHOST, EarthParserPROJECT:
@@ -2629,11 +2815,22 @@ func (p *EarthParser) Stmt() (localctx IStmtContext) {
 
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -2682,15 +2879,20 @@ type ICommandStmtContext interface {
 }
 
 type CommandStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyCommandStmtContext() *CommandStmtContext {
 	var p = new(CommandStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_commandStmt
 	return p
+}
+
+func InitEmptyCommandStmtContext(p *CommandStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_commandStmt
 }
 
 func (*CommandStmtContext) IsCommandStmtContext() {}
@@ -2698,7 +2900,7 @@ func (*CommandStmtContext) IsCommandStmtContext() {}
 func NewCommandStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CommandStmtContext {
 	var p = new(CommandStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_commandStmt
@@ -3229,30 +3431,13 @@ func (s *CommandStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) CommandStmt() (localctx ICommandStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewCommandStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 22, EarthParserRULE_commandStmt)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(343)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case EarthParserFROM:
@@ -3505,11 +3690,22 @@ func (p *EarthParser) CommandStmt() (localctx ICommandStmtContext) {
 
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -3531,15 +3727,20 @@ type IVersionContext interface {
 }
 
 type VersionContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyVersionContext() *VersionContext {
 	var p = new(VersionContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_version
 	return p
+}
+
+func InitEmptyVersionContext(p *VersionContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_version
 }
 
 func (*VersionContext) IsVersionContext() {}
@@ -3547,7 +3748,7 @@ func (*VersionContext) IsVersionContext() {}
 func NewVersionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *VersionContext {
 	var p = new(VersionContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_version
@@ -3610,34 +3811,18 @@ func (s *VersionContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) Version() (localctx IVersionContext) {
-	this := p
-	_ = this
-
 	localctx = NewVersionContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 24, EarthParserRULE_version)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(345)
 		p.Match(EarthParserVERSION)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	{
 		p.SetState(346)
@@ -3645,6 +3830,9 @@ func (p *EarthParser) Version() (localctx IVersionContext) {
 	}
 	p.SetState(348)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_alt = 1
 	for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		switch _alt {
@@ -3652,23 +3840,41 @@ func (p *EarthParser) Version() (localctx IVersionContext) {
 				{
 					p.SetState(347)
 					p.Match(EarthParserNL)
+					if p.HasError() {
+							// Recognition error - abort rule
+							goto errorExit
+					}
 				}
 
 
 
 
 		default:
-			panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+			p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+			goto errorExit
 		}
 
 		p.SetState(350)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 26, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 26, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -3691,15 +3897,20 @@ type IWithStmtContext interface {
 }
 
 type WithStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyWithStmtContext() *WithStmtContext {
 	var p = new(WithStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_withStmt
 	return p
+}
+
+func InitEmptyWithStmtContext(p *WithStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_withStmt
 }
 
 func (*WithStmtContext) IsWithStmtContext() {}
@@ -3707,7 +3918,7 @@ func (*WithStmtContext) IsWithStmtContext() {}
 func NewWithStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WithStmtContext {
 	var p = new(WithStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_withStmt
@@ -3786,29 +3997,9 @@ func (s *WithStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) WithStmt() (localctx IWithStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewWithStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 26, EarthParserRULE_withStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
@@ -3819,9 +4010,12 @@ func (p *EarthParser) WithStmt() (localctx IWithStmtContext) {
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 28, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 28, p.GetParserRuleContext()) == 1 {
 		p.SetState(354)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -3829,11 +4023,18 @@ func (p *EarthParser) WithStmt() (localctx IWithStmtContext) {
 			{
 				p.SetState(353)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(356)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -3841,10 +4042,14 @@ func (p *EarthParser) WithStmt() (localctx IWithStmtContext) {
 			p.WithBlock()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 	p.SetState(362)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -3852,21 +4057,42 @@ func (p *EarthParser) WithStmt() (localctx IWithStmtContext) {
 		{
 			p.SetState(361)
 			p.Match(EarthParserNL)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 
 		p.SetState(364)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+	    	goto errorExit
+	    }
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(366)
 		p.Match(EarthParserEND)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -3885,15 +4111,20 @@ type IWithBlockContext interface {
 }
 
 type WithBlockContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyWithBlockContext() *WithBlockContext {
 	var p = new(WithBlockContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_withBlock
 	return p
+}
+
+func InitEmptyWithBlockContext(p *WithBlockContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_withBlock
 }
 
 func (*WithBlockContext) IsWithBlockContext() {}
@@ -3901,7 +4132,7 @@ func (*WithBlockContext) IsWithBlockContext() {}
 func NewWithBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WithBlockContext {
 	var p = new(WithBlockContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_withBlock
@@ -3952,28 +4183,8 @@ func (s *WithBlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) WithBlock() (localctx IWithBlockContext) {
-	this := p
-	_ = this
-
 	localctx = NewWithBlockContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 28, EarthParserRULE_withBlock)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(368)
@@ -3982,7 +4193,17 @@ func (p *EarthParser) WithBlock() (localctx IWithBlockContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -4002,15 +4223,20 @@ type IWithExprContext interface {
 }
 
 type WithExprContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyWithExprContext() *WithExprContext {
 	var p = new(WithExprContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_withExpr
 	return p
+}
+
+func InitEmptyWithExprContext(p *WithExprContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_withExpr
 }
 
 func (*WithExprContext) IsWithExprContext() {}
@@ -4018,7 +4244,7 @@ func (*WithExprContext) IsWithExprContext() {}
 func NewWithExprContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WithExprContext {
 	var p = new(WithExprContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_withExpr
@@ -4073,32 +4299,16 @@ func (s *WithExprContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) WithExpr() (localctx IWithExprContext) {
-	this := p
-	_ = this
-
 	localctx = NewWithExprContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 30, EarthParserRULE_withExpr)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(370)
 		p.Match(EarthParserWITH)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	{
 		p.SetState(371)
@@ -4107,7 +4317,17 @@ func (p *EarthParser) WithExpr() (localctx IWithExprContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -4126,15 +4346,20 @@ type IWithCommandContext interface {
 }
 
 type WithCommandContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyWithCommandContext() *WithCommandContext {
 	var p = new(WithCommandContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_withCommand
 	return p
+}
+
+func InitEmptyWithCommandContext(p *WithCommandContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_withCommand
 }
 
 func (*WithCommandContext) IsWithCommandContext() {}
@@ -4142,7 +4367,7 @@ func (*WithCommandContext) IsWithCommandContext() {}
 func NewWithCommandContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WithCommandContext {
 	var p = new(WithCommandContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_withCommand
@@ -4193,28 +4418,8 @@ func (s *WithCommandContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) WithCommand() (localctx IWithCommandContext) {
-	this := p
-	_ = this
-
 	localctx = NewWithCommandContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 32, EarthParserRULE_withCommand)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(373)
@@ -4223,7 +4428,17 @@ func (p *EarthParser) WithCommand() (localctx IWithCommandContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -4243,15 +4458,20 @@ type IDockerCommandContext interface {
 }
 
 type DockerCommandContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyDockerCommandContext() *DockerCommandContext {
 	var p = new(DockerCommandContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_dockerCommand
 	return p
+}
+
+func InitEmptyDockerCommandContext(p *DockerCommandContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_dockerCommand
 }
 
 func (*DockerCommandContext) IsDockerCommandContext() {}
@@ -4259,7 +4479,7 @@ func (*DockerCommandContext) IsDockerCommandContext() {}
 func NewDockerCommandContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *DockerCommandContext {
 	var p = new(DockerCommandContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_dockerCommand
@@ -4314,37 +4534,24 @@ func (s *DockerCommandContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) DockerCommand() (localctx IDockerCommandContext) {
-	this := p
-	_ = this
-
 	localctx = NewDockerCommandContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 34, EarthParserRULE_dockerCommand)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(375)
 		p.Match(EarthParserDOCKER)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(377)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -4358,7 +4565,17 @@ func (p *EarthParser) DockerCommand() (localctx IDockerCommandContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -4383,15 +4600,20 @@ type IIfStmtContext interface {
 }
 
 type IfStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyIfStmtContext() *IfStmtContext {
 	var p = new(IfStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_ifStmt
 	return p
+}
+
+func InitEmptyIfStmtContext(p *IfStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_ifStmt
 }
 
 func (*IfStmtContext) IsIfStmtContext() {}
@@ -4399,7 +4621,7 @@ func (*IfStmtContext) IsIfStmtContext() {}
 func NewIfStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IfStmtContext {
 	var p = new(IfStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_ifStmt
@@ -4519,29 +4741,9 @@ func (s *IfStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) IfStmt() (localctx IIfStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewIfStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 36, EarthParserRULE_ifStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	var _alt int
 
@@ -4552,12 +4754,20 @@ func (p *EarthParser) IfStmt() (localctx IIfStmtContext) {
 	}
 	p.SetState(388)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 32, p.GetParserRuleContext())
-
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 32, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			p.SetState(381)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
 			_la = p.GetTokenStream().LA(1)
 
 
@@ -4565,11 +4775,18 @@ func (p *EarthParser) IfStmt() (localctx IIfStmtContext) {
 				{
 					p.SetState(380)
 					p.Match(EarthParserNL)
+					if p.HasError() {
+							// Recognition error - abort rule
+							goto errorExit
+					}
 				}
 
 
 				p.SetState(383)
 				p.GetErrorHandler().Sync(p)
+				if p.HasError() {
+			    	goto errorExit
+			    }
 				_la = p.GetTokenStream().LA(1)
 			}
 			{
@@ -4581,15 +4798,24 @@ func (p *EarthParser) IfStmt() (localctx IIfStmtContext) {
 		}
 		p.SetState(390)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 32, p.GetParserRuleContext())
+		if p.HasError() {
+	    	goto errorExit
+	    }
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 32, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 	p.SetState(397)
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 34, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 34, p.GetParserRuleContext()) == 1 {
 		p.SetState(392)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -4597,11 +4823,18 @@ func (p *EarthParser) IfStmt() (localctx IIfStmtContext) {
 			{
 				p.SetState(391)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(394)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -4609,10 +4842,14 @@ func (p *EarthParser) IfStmt() (localctx IIfStmtContext) {
 			p.ElseClause()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 	p.SetState(400)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -4620,21 +4857,42 @@ func (p *EarthParser) IfStmt() (localctx IIfStmtContext) {
 		{
 			p.SetState(399)
 			p.Match(EarthParserNL)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 
 		p.SetState(402)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+	    	goto errorExit
+	    }
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(404)
 		p.Match(EarthParserEND)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -4657,15 +4915,20 @@ type IIfClauseContext interface {
 }
 
 type IfClauseContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyIfClauseContext() *IfClauseContext {
 	var p = new(IfClauseContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_ifClause
 	return p
+}
+
+func InitEmptyIfClauseContext(p *IfClauseContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_ifClause
 }
 
 func (*IfClauseContext) IsIfClauseContext() {}
@@ -4673,7 +4936,7 @@ func (*IfClauseContext) IsIfClauseContext() {}
 func NewIfClauseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IfClauseContext {
 	var p = new(IfClauseContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_ifClause
@@ -4752,34 +5015,18 @@ func (s *IfClauseContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) IfClause() (localctx IIfClauseContext) {
-	this := p
-	_ = this
-
 	localctx = NewIfClauseContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 38, EarthParserRULE_ifClause)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(406)
 		p.Match(EarthParserIF)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	{
 		p.SetState(407)
@@ -4789,9 +5036,12 @@ func (p *EarthParser) IfClause() (localctx IIfClauseContext) {
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 37, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 37, p.GetParserRuleContext()) == 1 {
 		p.SetState(409)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -4799,11 +5049,18 @@ func (p *EarthParser) IfClause() (localctx IIfClauseContext) {
 			{
 				p.SetState(408)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(411)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -4811,12 +5068,23 @@ func (p *EarthParser) IfClause() (localctx IIfClauseContext) {
 			p.IfBlock()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -4835,15 +5103,20 @@ type IIfBlockContext interface {
 }
 
 type IfBlockContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyIfBlockContext() *IfBlockContext {
 	var p = new(IfBlockContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_ifBlock
 	return p
+}
+
+func InitEmptyIfBlockContext(p *IfBlockContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_ifBlock
 }
 
 func (*IfBlockContext) IsIfBlockContext() {}
@@ -4851,7 +5124,7 @@ func (*IfBlockContext) IsIfBlockContext() {}
 func NewIfBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IfBlockContext {
 	var p = new(IfBlockContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_ifBlock
@@ -4902,28 +5175,8 @@ func (s *IfBlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) IfBlock() (localctx IIfBlockContext) {
-	this := p
-	_ = this
-
 	localctx = NewIfBlockContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 40, EarthParserRULE_ifBlock)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(416)
@@ -4932,7 +5185,17 @@ func (p *EarthParser) IfBlock() (localctx IIfBlockContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -4955,15 +5218,20 @@ type IElseIfClauseContext interface {
 }
 
 type ElseIfClauseContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyElseIfClauseContext() *ElseIfClauseContext {
 	var p = new(ElseIfClauseContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_elseIfClause
 	return p
+}
+
+func InitEmptyElseIfClauseContext(p *ElseIfClauseContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_elseIfClause
 }
 
 func (*ElseIfClauseContext) IsElseIfClauseContext() {}
@@ -4971,7 +5239,7 @@ func (*ElseIfClauseContext) IsElseIfClauseContext() {}
 func NewElseIfClauseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ElseIfClauseContext {
 	var p = new(ElseIfClauseContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_elseIfClause
@@ -5050,34 +5318,18 @@ func (s *ElseIfClauseContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ElseIfClause() (localctx IElseIfClauseContext) {
-	this := p
-	_ = this
-
 	localctx = NewElseIfClauseContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 42, EarthParserRULE_elseIfClause)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(418)
 		p.Match(EarthParserELSE_IF)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	{
 		p.SetState(419)
@@ -5087,9 +5339,12 @@ func (p *EarthParser) ElseIfClause() (localctx IElseIfClauseContext) {
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 39, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 39, p.GetParserRuleContext()) == 1 {
 		p.SetState(421)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -5097,11 +5352,18 @@ func (p *EarthParser) ElseIfClause() (localctx IElseIfClauseContext) {
 			{
 				p.SetState(420)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(423)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -5109,12 +5371,23 @@ func (p *EarthParser) ElseIfClause() (localctx IElseIfClauseContext) {
 			p.ElseIfBlock()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -5133,15 +5406,20 @@ type IElseIfBlockContext interface {
 }
 
 type ElseIfBlockContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyElseIfBlockContext() *ElseIfBlockContext {
 	var p = new(ElseIfBlockContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_elseIfBlock
 	return p
+}
+
+func InitEmptyElseIfBlockContext(p *ElseIfBlockContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_elseIfBlock
 }
 
 func (*ElseIfBlockContext) IsElseIfBlockContext() {}
@@ -5149,7 +5427,7 @@ func (*ElseIfBlockContext) IsElseIfBlockContext() {}
 func NewElseIfBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ElseIfBlockContext {
 	var p = new(ElseIfBlockContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_elseIfBlock
@@ -5200,28 +5478,8 @@ func (s *ElseIfBlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ElseIfBlock() (localctx IElseIfBlockContext) {
-	this := p
-	_ = this
-
 	localctx = NewElseIfBlockContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 44, EarthParserRULE_elseIfBlock)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(428)
@@ -5230,7 +5488,17 @@ func (p *EarthParser) ElseIfBlock() (localctx IElseIfBlockContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -5252,15 +5520,20 @@ type IElseClauseContext interface {
 }
 
 type ElseClauseContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyElseClauseContext() *ElseClauseContext {
 	var p = new(ElseClauseContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_elseClause
 	return p
+}
+
+func InitEmptyElseClauseContext(p *ElseClauseContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_elseClause
 }
 
 func (*ElseClauseContext) IsElseClauseContext() {}
@@ -5268,7 +5541,7 @@ func (*ElseClauseContext) IsElseClauseContext() {}
 func NewElseClauseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ElseClauseContext {
 	var p = new(ElseClauseContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_elseClause
@@ -5331,42 +5604,29 @@ func (s *ElseClauseContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ElseClause() (localctx IElseClauseContext) {
-	this := p
-	_ = this
-
 	localctx = NewElseClauseContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 46, EarthParserRULE_elseClause)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(430)
 		p.Match(EarthParserELSE)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(437)
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 41, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 41, p.GetParserRuleContext()) == 1 {
 		p.SetState(432)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -5374,11 +5634,18 @@ func (p *EarthParser) ElseClause() (localctx IElseClauseContext) {
 			{
 				p.SetState(431)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(434)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -5386,12 +5653,23 @@ func (p *EarthParser) ElseClause() (localctx IElseClauseContext) {
 			p.ElseBlock()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -5410,15 +5688,20 @@ type IElseBlockContext interface {
 }
 
 type ElseBlockContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyElseBlockContext() *ElseBlockContext {
 	var p = new(ElseBlockContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_elseBlock
 	return p
+}
+
+func InitEmptyElseBlockContext(p *ElseBlockContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_elseBlock
 }
 
 func (*ElseBlockContext) IsElseBlockContext() {}
@@ -5426,7 +5709,7 @@ func (*ElseBlockContext) IsElseBlockContext() {}
 func NewElseBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ElseBlockContext {
 	var p = new(ElseBlockContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_elseBlock
@@ -5477,28 +5760,8 @@ func (s *ElseBlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ElseBlock() (localctx IElseBlockContext) {
-	this := p
-	_ = this
-
 	localctx = NewElseBlockContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 48, EarthParserRULE_elseBlock)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(439)
@@ -5507,7 +5770,17 @@ func (p *EarthParser) ElseBlock() (localctx IElseBlockContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -5526,15 +5799,20 @@ type IIfExprContext interface {
 }
 
 type IfExprContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyIfExprContext() *IfExprContext {
 	var p = new(IfExprContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_ifExpr
 	return p
+}
+
+func InitEmptyIfExprContext(p *IfExprContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_ifExpr
 }
 
 func (*IfExprContext) IsIfExprContext() {}
@@ -5542,7 +5820,7 @@ func (*IfExprContext) IsIfExprContext() {}
 func NewIfExprContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IfExprContext {
 	var p = new(IfExprContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_ifExpr
@@ -5593,28 +5871,8 @@ func (s *IfExprContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) IfExpr() (localctx IIfExprContext) {
-	this := p
-	_ = this
-
 	localctx = NewIfExprContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 50, EarthParserRULE_ifExpr)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(441)
@@ -5623,7 +5881,17 @@ func (p *EarthParser) IfExpr() (localctx IIfExprContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -5642,15 +5910,20 @@ type IElseIfExprContext interface {
 }
 
 type ElseIfExprContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyElseIfExprContext() *ElseIfExprContext {
 	var p = new(ElseIfExprContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_elseIfExpr
 	return p
+}
+
+func InitEmptyElseIfExprContext(p *ElseIfExprContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_elseIfExpr
 }
 
 func (*ElseIfExprContext) IsElseIfExprContext() {}
@@ -5658,7 +5931,7 @@ func (*ElseIfExprContext) IsElseIfExprContext() {}
 func NewElseIfExprContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ElseIfExprContext {
 	var p = new(ElseIfExprContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_elseIfExpr
@@ -5709,28 +5982,8 @@ func (s *ElseIfExprContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ElseIfExpr() (localctx IElseIfExprContext) {
-	this := p
-	_ = this
-
 	localctx = NewElseIfExprContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 52, EarthParserRULE_elseIfExpr)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(443)
@@ -5739,7 +5992,17 @@ func (p *EarthParser) ElseIfExpr() (localctx IElseIfExprContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -5763,15 +6026,20 @@ type ITryStmtContext interface {
 }
 
 type TryStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyTryStmtContext() *TryStmtContext {
 	var p = new(TryStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_tryStmt
 	return p
+}
+
+func InitEmptyTryStmtContext(p *TryStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_tryStmt
 }
 
 func (*TryStmtContext) IsTryStmtContext() {}
@@ -5779,7 +6047,7 @@ func (*TryStmtContext) IsTryStmtContext() {}
 func NewTryStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TryStmtContext {
 	var p = new(TryStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_tryStmt
@@ -5874,29 +6142,9 @@ func (s *TryStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) TryStmt() (localctx ITryStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewTryStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 54, EarthParserRULE_tryStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
@@ -5907,9 +6155,12 @@ func (p *EarthParser) TryStmt() (localctx ITryStmtContext) {
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 43, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 43, p.GetParserRuleContext()) == 1 {
 		p.SetState(447)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -5917,11 +6168,18 @@ func (p *EarthParser) TryStmt() (localctx ITryStmtContext) {
 			{
 				p.SetState(446)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(449)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -5929,15 +6187,19 @@ func (p *EarthParser) TryStmt() (localctx ITryStmtContext) {
 			p.CatchClause()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 	p.SetState(460)
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 45, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 45, p.GetParserRuleContext()) == 1 {
 		p.SetState(455)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -5945,11 +6207,18 @@ func (p *EarthParser) TryStmt() (localctx ITryStmtContext) {
 			{
 				p.SetState(454)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(457)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -5957,10 +6226,14 @@ func (p *EarthParser) TryStmt() (localctx ITryStmtContext) {
 			p.FinallyClause()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 	p.SetState(463)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -5968,21 +6241,42 @@ func (p *EarthParser) TryStmt() (localctx ITryStmtContext) {
 		{
 			p.SetState(462)
 			p.Match(EarthParserNL)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 
 		p.SetState(465)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+	    	goto errorExit
+	    }
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(467)
 		p.Match(EarthParserEND)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -6004,15 +6298,20 @@ type ITryClauseContext interface {
 }
 
 type TryClauseContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyTryClauseContext() *TryClauseContext {
 	var p = new(TryClauseContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_tryClause
 	return p
+}
+
+func InitEmptyTryClauseContext(p *TryClauseContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_tryClause
 }
 
 func (*TryClauseContext) IsTryClauseContext() {}
@@ -6020,7 +6319,7 @@ func (*TryClauseContext) IsTryClauseContext() {}
 func NewTryClauseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TryClauseContext {
 	var p = new(TryClauseContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_tryClause
@@ -6083,42 +6382,29 @@ func (s *TryClauseContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) TryClause() (localctx ITryClauseContext) {
-	this := p
-	_ = this
-
 	localctx = NewTryClauseContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 56, EarthParserRULE_tryClause)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(469)
 		p.Match(EarthParserTRY)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(476)
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 48, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 48, p.GetParserRuleContext()) == 1 {
 		p.SetState(471)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -6126,11 +6412,18 @@ func (p *EarthParser) TryClause() (localctx ITryClauseContext) {
 			{
 				p.SetState(470)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(473)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -6138,12 +6431,23 @@ func (p *EarthParser) TryClause() (localctx ITryClauseContext) {
 			p.TryBlock()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -6162,15 +6466,20 @@ type ITryBlockContext interface {
 }
 
 type TryBlockContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyTryBlockContext() *TryBlockContext {
 	var p = new(TryBlockContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_tryBlock
 	return p
+}
+
+func InitEmptyTryBlockContext(p *TryBlockContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_tryBlock
 }
 
 func (*TryBlockContext) IsTryBlockContext() {}
@@ -6178,7 +6487,7 @@ func (*TryBlockContext) IsTryBlockContext() {}
 func NewTryBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TryBlockContext {
 	var p = new(TryBlockContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_tryBlock
@@ -6229,28 +6538,8 @@ func (s *TryBlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) TryBlock() (localctx ITryBlockContext) {
-	this := p
-	_ = this
-
 	localctx = NewTryBlockContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 58, EarthParserRULE_tryBlock)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(478)
@@ -6259,7 +6548,17 @@ func (p *EarthParser) TryBlock() (localctx ITryBlockContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -6281,15 +6580,20 @@ type ICatchClauseContext interface {
 }
 
 type CatchClauseContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyCatchClauseContext() *CatchClauseContext {
 	var p = new(CatchClauseContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_catchClause
 	return p
+}
+
+func InitEmptyCatchClauseContext(p *CatchClauseContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_catchClause
 }
 
 func (*CatchClauseContext) IsCatchClauseContext() {}
@@ -6297,7 +6601,7 @@ func (*CatchClauseContext) IsCatchClauseContext() {}
 func NewCatchClauseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CatchClauseContext {
 	var p = new(CatchClauseContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_catchClause
@@ -6360,42 +6664,29 @@ func (s *CatchClauseContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) CatchClause() (localctx ICatchClauseContext) {
-	this := p
-	_ = this
-
 	localctx = NewCatchClauseContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 60, EarthParserRULE_catchClause)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(480)
 		p.Match(EarthParserCATCH)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(487)
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 50, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 50, p.GetParserRuleContext()) == 1 {
 		p.SetState(482)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -6403,11 +6694,18 @@ func (p *EarthParser) CatchClause() (localctx ICatchClauseContext) {
 			{
 				p.SetState(481)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(484)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -6415,12 +6713,23 @@ func (p *EarthParser) CatchClause() (localctx ICatchClauseContext) {
 			p.CatchBlock()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -6439,15 +6748,20 @@ type ICatchBlockContext interface {
 }
 
 type CatchBlockContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyCatchBlockContext() *CatchBlockContext {
 	var p = new(CatchBlockContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_catchBlock
 	return p
+}
+
+func InitEmptyCatchBlockContext(p *CatchBlockContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_catchBlock
 }
 
 func (*CatchBlockContext) IsCatchBlockContext() {}
@@ -6455,7 +6769,7 @@ func (*CatchBlockContext) IsCatchBlockContext() {}
 func NewCatchBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CatchBlockContext {
 	var p = new(CatchBlockContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_catchBlock
@@ -6506,28 +6820,8 @@ func (s *CatchBlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) CatchBlock() (localctx ICatchBlockContext) {
-	this := p
-	_ = this
-
 	localctx = NewCatchBlockContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 62, EarthParserRULE_catchBlock)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(489)
@@ -6536,7 +6830,17 @@ func (p *EarthParser) CatchBlock() (localctx ICatchBlockContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -6558,15 +6862,20 @@ type IFinallyClauseContext interface {
 }
 
 type FinallyClauseContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyFinallyClauseContext() *FinallyClauseContext {
 	var p = new(FinallyClauseContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_finallyClause
 	return p
+}
+
+func InitEmptyFinallyClauseContext(p *FinallyClauseContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_finallyClause
 }
 
 func (*FinallyClauseContext) IsFinallyClauseContext() {}
@@ -6574,7 +6883,7 @@ func (*FinallyClauseContext) IsFinallyClauseContext() {}
 func NewFinallyClauseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *FinallyClauseContext {
 	var p = new(FinallyClauseContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_finallyClause
@@ -6637,42 +6946,29 @@ func (s *FinallyClauseContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) FinallyClause() (localctx IFinallyClauseContext) {
-	this := p
-	_ = this
-
 	localctx = NewFinallyClauseContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 64, EarthParserRULE_finallyClause)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(491)
 		p.Match(EarthParserFINALLY)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(498)
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 52, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 52, p.GetParserRuleContext()) == 1 {
 		p.SetState(493)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -6680,11 +6976,18 @@ func (p *EarthParser) FinallyClause() (localctx IFinallyClauseContext) {
 			{
 				p.SetState(492)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(495)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -6692,12 +6995,23 @@ func (p *EarthParser) FinallyClause() (localctx IFinallyClauseContext) {
 			p.FinallyBlock()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -6716,15 +7030,20 @@ type IFinallyBlockContext interface {
 }
 
 type FinallyBlockContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyFinallyBlockContext() *FinallyBlockContext {
 	var p = new(FinallyBlockContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_finallyBlock
 	return p
+}
+
+func InitEmptyFinallyBlockContext(p *FinallyBlockContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_finallyBlock
 }
 
 func (*FinallyBlockContext) IsFinallyBlockContext() {}
@@ -6732,7 +7051,7 @@ func (*FinallyBlockContext) IsFinallyBlockContext() {}
 func NewFinallyBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *FinallyBlockContext {
 	var p = new(FinallyBlockContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_finallyBlock
@@ -6783,28 +7102,8 @@ func (s *FinallyBlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) FinallyBlock() (localctx IFinallyBlockContext) {
-	this := p
-	_ = this
-
 	localctx = NewFinallyBlockContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 66, EarthParserRULE_finallyBlock)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(500)
@@ -6813,7 +7112,17 @@ func (p *EarthParser) FinallyBlock() (localctx IFinallyBlockContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -6835,15 +7144,20 @@ type IForStmtContext interface {
 }
 
 type ForStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyForStmtContext() *ForStmtContext {
 	var p = new(ForStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_forStmt
 	return p
+}
+
+func InitEmptyForStmtContext(p *ForStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_forStmt
 }
 
 func (*ForStmtContext) IsForStmtContext() {}
@@ -6851,7 +7165,7 @@ func (*ForStmtContext) IsForStmtContext() {}
 func NewForStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForStmtContext {
 	var p = new(ForStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_forStmt
@@ -6914,29 +7228,9 @@ func (s *ForStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ForStmt() (localctx IForStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewForStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 68, EarthParserRULE_forStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
@@ -6945,6 +7239,9 @@ func (p *EarthParser) ForStmt() (localctx IForStmtContext) {
 	}
 	p.SetState(504)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -6952,21 +7249,42 @@ func (p *EarthParser) ForStmt() (localctx IForStmtContext) {
 		{
 			p.SetState(503)
 			p.Match(EarthParserNL)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 
 		p.SetState(506)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+	    	goto errorExit
+	    }
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(508)
 		p.Match(EarthParserEND)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -6989,15 +7307,20 @@ type IForClauseContext interface {
 }
 
 type ForClauseContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyForClauseContext() *ForClauseContext {
 	var p = new(ForClauseContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_forClause
 	return p
+}
+
+func InitEmptyForClauseContext(p *ForClauseContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_forClause
 }
 
 func (*ForClauseContext) IsForClauseContext() {}
@@ -7005,7 +7328,7 @@ func (*ForClauseContext) IsForClauseContext() {}
 func NewForClauseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForClauseContext {
 	var p = new(ForClauseContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_forClause
@@ -7084,34 +7407,18 @@ func (s *ForClauseContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ForClause() (localctx IForClauseContext) {
-	this := p
-	_ = this
-
 	localctx = NewForClauseContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 70, EarthParserRULE_forClause)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(510)
 		p.Match(EarthParserFOR)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	{
 		p.SetState(511)
@@ -7121,9 +7428,12 @@ func (p *EarthParser) ForClause() (localctx IForClauseContext) {
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 55, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 55, p.GetParserRuleContext()) == 1 {
 		p.SetState(513)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -7131,11 +7441,18 @@ func (p *EarthParser) ForClause() (localctx IForClauseContext) {
 			{
 				p.SetState(512)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(515)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -7143,12 +7460,23 @@ func (p *EarthParser) ForClause() (localctx IForClauseContext) {
 			p.ForBlock()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -7167,15 +7495,20 @@ type IForBlockContext interface {
 }
 
 type ForBlockContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyForBlockContext() *ForBlockContext {
 	var p = new(ForBlockContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_forBlock
 	return p
+}
+
+func InitEmptyForBlockContext(p *ForBlockContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_forBlock
 }
 
 func (*ForBlockContext) IsForBlockContext() {}
@@ -7183,7 +7516,7 @@ func (*ForBlockContext) IsForBlockContext() {}
 func NewForBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForBlockContext {
 	var p = new(ForBlockContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_forBlock
@@ -7234,28 +7567,8 @@ func (s *ForBlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ForBlock() (localctx IForBlockContext) {
-	this := p
-	_ = this
-
 	localctx = NewForBlockContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 72, EarthParserRULE_forBlock)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(520)
@@ -7264,7 +7577,17 @@ func (p *EarthParser) ForBlock() (localctx IForBlockContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -7283,15 +7606,20 @@ type IForExprContext interface {
 }
 
 type ForExprContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyForExprContext() *ForExprContext {
 	var p = new(ForExprContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_forExpr
 	return p
+}
+
+func InitEmptyForExprContext(p *ForExprContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_forExpr
 }
 
 func (*ForExprContext) IsForExprContext() {}
@@ -7299,7 +7627,7 @@ func (*ForExprContext) IsForExprContext() {}
 func NewForExprContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForExprContext {
 	var p = new(ForExprContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_forExpr
@@ -7350,28 +7678,8 @@ func (s *ForExprContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ForExpr() (localctx IForExprContext) {
-	this := p
-	_ = this
-
 	localctx = NewForExprContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 74, EarthParserRULE_forExpr)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(522)
@@ -7380,7 +7688,17 @@ func (p *EarthParser) ForExpr() (localctx IForExprContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -7402,15 +7720,20 @@ type IWaitStmtContext interface {
 }
 
 type WaitStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyWaitStmtContext() *WaitStmtContext {
 	var p = new(WaitStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_waitStmt
 	return p
+}
+
+func InitEmptyWaitStmtContext(p *WaitStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_waitStmt
 }
 
 func (*WaitStmtContext) IsWaitStmtContext() {}
@@ -7418,7 +7741,7 @@ func (*WaitStmtContext) IsWaitStmtContext() {}
 func NewWaitStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WaitStmtContext {
 	var p = new(WaitStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_waitStmt
@@ -7481,29 +7804,9 @@ func (s *WaitStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) WaitStmt() (localctx IWaitStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewWaitStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 76, EarthParserRULE_waitStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
@@ -7512,6 +7815,9 @@ func (p *EarthParser) WaitStmt() (localctx IWaitStmtContext) {
 	}
 	p.SetState(526)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -7519,21 +7825,42 @@ func (p *EarthParser) WaitStmt() (localctx IWaitStmtContext) {
 		{
 			p.SetState(525)
 			p.Match(EarthParserNL)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 
 		p.SetState(528)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+	    	goto errorExit
+	    }
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(530)
 		p.Match(EarthParserEND)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -7556,15 +7883,20 @@ type IWaitClauseContext interface {
 }
 
 type WaitClauseContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyWaitClauseContext() *WaitClauseContext {
 	var p = new(WaitClauseContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_waitClause
 	return p
+}
+
+func InitEmptyWaitClauseContext(p *WaitClauseContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_waitClause
 }
 
 func (*WaitClauseContext) IsWaitClauseContext() {}
@@ -7572,7 +7904,7 @@ func (*WaitClauseContext) IsWaitClauseContext() {}
 func NewWaitClauseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WaitClauseContext {
 	var p = new(WaitClauseContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_waitClause
@@ -7651,37 +7983,24 @@ func (s *WaitClauseContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) WaitClause() (localctx IWaitClauseContext) {
-	this := p
-	_ = this
-
 	localctx = NewWaitClauseContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 78, EarthParserRULE_waitClause)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(532)
 		p.Match(EarthParserWAIT)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(534)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -7696,9 +8015,12 @@ func (p *EarthParser) WaitClause() (localctx IWaitClauseContext) {
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 59, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 59, p.GetParserRuleContext()) == 1 {
 		p.SetState(537)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -7706,11 +8028,18 @@ func (p *EarthParser) WaitClause() (localctx IWaitClauseContext) {
 			{
 				p.SetState(536)
 				p.Match(EarthParserNL)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 
 			p.SetState(539)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+		    	goto errorExit
+		    }
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
@@ -7718,12 +8047,23 @@ func (p *EarthParser) WaitClause() (localctx IWaitClauseContext) {
 			p.WaitBlock()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -7742,15 +8082,20 @@ type IWaitBlockContext interface {
 }
 
 type WaitBlockContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyWaitBlockContext() *WaitBlockContext {
 	var p = new(WaitBlockContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_waitBlock
 	return p
+}
+
+func InitEmptyWaitBlockContext(p *WaitBlockContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_waitBlock
 }
 
 func (*WaitBlockContext) IsWaitBlockContext() {}
@@ -7758,7 +8103,7 @@ func (*WaitBlockContext) IsWaitBlockContext() {}
 func NewWaitBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WaitBlockContext {
 	var p = new(WaitBlockContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_waitBlock
@@ -7809,28 +8154,8 @@ func (s *WaitBlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) WaitBlock() (localctx IWaitBlockContext) {
-	this := p
-	_ = this
-
 	localctx = NewWaitBlockContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 80, EarthParserRULE_waitBlock)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(544)
@@ -7839,7 +8164,17 @@ func (p *EarthParser) WaitBlock() (localctx IWaitBlockContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -7858,15 +8193,20 @@ type IWaitExprContext interface {
 }
 
 type WaitExprContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyWaitExprContext() *WaitExprContext {
 	var p = new(WaitExprContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_waitExpr
 	return p
+}
+
+func InitEmptyWaitExprContext(p *WaitExprContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_waitExpr
 }
 
 func (*WaitExprContext) IsWaitExprContext() {}
@@ -7874,7 +8214,7 @@ func (*WaitExprContext) IsWaitExprContext() {}
 func NewWaitExprContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WaitExprContext {
 	var p = new(WaitExprContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_waitExpr
@@ -7925,28 +8265,8 @@ func (s *WaitExprContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) WaitExpr() (localctx IWaitExprContext) {
-	this := p
-	_ = this
-
 	localctx = NewWaitExprContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 82, EarthParserRULE_waitExpr)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(546)
@@ -7955,7 +8275,17 @@ func (p *EarthParser) WaitExpr() (localctx IWaitExprContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -7975,15 +8305,20 @@ type IFromStmtContext interface {
 }
 
 type FromStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyFromStmtContext() *FromStmtContext {
 	var p = new(FromStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_fromStmt
 	return p
+}
+
+func InitEmptyFromStmtContext(p *FromStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_fromStmt
 }
 
 func (*FromStmtContext) IsFromStmtContext() {}
@@ -7991,7 +8326,7 @@ func (*FromStmtContext) IsFromStmtContext() {}
 func NewFromStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *FromStmtContext {
 	var p = new(FromStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_fromStmt
@@ -8046,37 +8381,24 @@ func (s *FromStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) FromStmt() (localctx IFromStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewFromStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 84, EarthParserRULE_fromStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(548)
 		p.Match(EarthParserFROM)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(550)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -8090,7 +8412,17 @@ func (p *EarthParser) FromStmt() (localctx IFromStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -8110,15 +8442,20 @@ type IFromDockerfileStmtContext interface {
 }
 
 type FromDockerfileStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyFromDockerfileStmtContext() *FromDockerfileStmtContext {
 	var p = new(FromDockerfileStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_fromDockerfileStmt
 	return p
+}
+
+func InitEmptyFromDockerfileStmtContext(p *FromDockerfileStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_fromDockerfileStmt
 }
 
 func (*FromDockerfileStmtContext) IsFromDockerfileStmtContext() {}
@@ -8126,7 +8463,7 @@ func (*FromDockerfileStmtContext) IsFromDockerfileStmtContext() {}
 func NewFromDockerfileStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *FromDockerfileStmtContext {
 	var p = new(FromDockerfileStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_fromDockerfileStmt
@@ -8181,37 +8518,24 @@ func (s *FromDockerfileStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) FromDockerfileStmt() (localctx IFromDockerfileStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewFromDockerfileStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 86, EarthParserRULE_fromDockerfileStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(552)
 		p.Match(EarthParserFROM_DOCKERFILE)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(554)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -8225,7 +8549,17 @@ func (p *EarthParser) FromDockerfileStmt() (localctx IFromDockerfileStmtContext)
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -8245,15 +8579,20 @@ type ILocallyStmtContext interface {
 }
 
 type LocallyStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyLocallyStmtContext() *LocallyStmtContext {
 	var p = new(LocallyStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_locallyStmt
 	return p
+}
+
+func InitEmptyLocallyStmtContext(p *LocallyStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_locallyStmt
 }
 
 func (*LocallyStmtContext) IsLocallyStmtContext() {}
@@ -8261,7 +8600,7 @@ func (*LocallyStmtContext) IsLocallyStmtContext() {}
 func NewLocallyStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *LocallyStmtContext {
 	var p = new(LocallyStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_locallyStmt
@@ -8316,37 +8655,24 @@ func (s *LocallyStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) LocallyStmt() (localctx ILocallyStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewLocallyStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 88, EarthParserRULE_locallyStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(556)
 		p.Match(EarthParserLOCALLY)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(558)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -8360,7 +8686,17 @@ func (p *EarthParser) LocallyStmt() (localctx ILocallyStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -8380,15 +8716,20 @@ type ICopyStmtContext interface {
 }
 
 type CopyStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyCopyStmtContext() *CopyStmtContext {
 	var p = new(CopyStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_copyStmt
 	return p
+}
+
+func InitEmptyCopyStmtContext(p *CopyStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_copyStmt
 }
 
 func (*CopyStmtContext) IsCopyStmtContext() {}
@@ -8396,7 +8737,7 @@ func (*CopyStmtContext) IsCopyStmtContext() {}
 func NewCopyStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyStmtContext {
 	var p = new(CopyStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_copyStmt
@@ -8451,37 +8792,24 @@ func (s *CopyStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) CopyStmt() (localctx ICopyStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewCopyStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 90, EarthParserRULE_copyStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(560)
 		p.Match(EarthParserCOPY)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(562)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -8495,7 +8823,17 @@ func (p *EarthParser) CopyStmt() (localctx ICopyStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -8515,15 +8853,20 @@ type ISaveStmtContext interface {
 }
 
 type SaveStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptySaveStmtContext() *SaveStmtContext {
 	var p = new(SaveStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_saveStmt
 	return p
+}
+
+func InitEmptySaveStmtContext(p *SaveStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_saveStmt
 }
 
 func (*SaveStmtContext) IsSaveStmtContext() {}
@@ -8531,7 +8874,7 @@ func (*SaveStmtContext) IsSaveStmtContext() {}
 func NewSaveStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SaveStmtContext {
 	var p = new(SaveStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_saveStmt
@@ -8598,30 +8941,13 @@ func (s *SaveStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) SaveStmt() (localctx ISaveStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewSaveStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 92, EarthParserRULE_saveStmt)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(566)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case EarthParserSAVE_ARTIFACT:
@@ -8642,11 +8968,22 @@ func (p *EarthParser) SaveStmt() (localctx ISaveStmtContext) {
 
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -8666,15 +9003,20 @@ type ISaveImageContext interface {
 }
 
 type SaveImageContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptySaveImageContext() *SaveImageContext {
 	var p = new(SaveImageContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_saveImage
 	return p
+}
+
+func InitEmptySaveImageContext(p *SaveImageContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_saveImage
 }
 
 func (*SaveImageContext) IsSaveImageContext() {}
@@ -8682,7 +9024,7 @@ func (*SaveImageContext) IsSaveImageContext() {}
 func NewSaveImageContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SaveImageContext {
 	var p = new(SaveImageContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_saveImage
@@ -8737,37 +9079,24 @@ func (s *SaveImageContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) SaveImage() (localctx ISaveImageContext) {
-	this := p
-	_ = this
-
 	localctx = NewSaveImageContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 94, EarthParserRULE_saveImage)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(568)
 		p.Match(EarthParserSAVE_IMAGE)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(570)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -8781,7 +9110,17 @@ func (p *EarthParser) SaveImage() (localctx ISaveImageContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -8801,15 +9140,20 @@ type ISaveArtifactContext interface {
 }
 
 type SaveArtifactContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptySaveArtifactContext() *SaveArtifactContext {
 	var p = new(SaveArtifactContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_saveArtifact
 	return p
+}
+
+func InitEmptySaveArtifactContext(p *SaveArtifactContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_saveArtifact
 }
 
 func (*SaveArtifactContext) IsSaveArtifactContext() {}
@@ -8817,7 +9161,7 @@ func (*SaveArtifactContext) IsSaveArtifactContext() {}
 func NewSaveArtifactContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SaveArtifactContext {
 	var p = new(SaveArtifactContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_saveArtifact
@@ -8872,37 +9216,24 @@ func (s *SaveArtifactContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) SaveArtifact() (localctx ISaveArtifactContext) {
-	this := p
-	_ = this
-
 	localctx = NewSaveArtifactContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 96, EarthParserRULE_saveArtifact)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(572)
 		p.Match(EarthParserSAVE_ARTIFACT)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(574)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -8916,7 +9247,17 @@ func (p *EarthParser) SaveArtifact() (localctx ISaveArtifactContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -8936,15 +9277,20 @@ type IRunStmtContext interface {
 }
 
 type RunStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyRunStmtContext() *RunStmtContext {
 	var p = new(RunStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_runStmt
 	return p
+}
+
+func InitEmptyRunStmtContext(p *RunStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_runStmt
 }
 
 func (*RunStmtContext) IsRunStmtContext() {}
@@ -8952,7 +9298,7 @@ func (*RunStmtContext) IsRunStmtContext() {}
 func NewRunStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *RunStmtContext {
 	var p = new(RunStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_runStmt
@@ -9007,37 +9353,24 @@ func (s *RunStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) RunStmt() (localctx IRunStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewRunStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 98, EarthParserRULE_runStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(576)
 		p.Match(EarthParserRUN)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(578)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -9051,7 +9384,17 @@ func (p *EarthParser) RunStmt() (localctx IRunStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -9071,15 +9414,20 @@ type IBuildStmtContext interface {
 }
 
 type BuildStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyBuildStmtContext() *BuildStmtContext {
 	var p = new(BuildStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_buildStmt
 	return p
+}
+
+func InitEmptyBuildStmtContext(p *BuildStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_buildStmt
 }
 
 func (*BuildStmtContext) IsBuildStmtContext() {}
@@ -9087,7 +9435,7 @@ func (*BuildStmtContext) IsBuildStmtContext() {}
 func NewBuildStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *BuildStmtContext {
 	var p = new(BuildStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_buildStmt
@@ -9142,37 +9490,24 @@ func (s *BuildStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) BuildStmt() (localctx IBuildStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewBuildStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 100, EarthParserRULE_buildStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(580)
 		p.Match(EarthParserBUILD)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(582)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -9186,7 +9521,17 @@ func (p *EarthParser) BuildStmt() (localctx IBuildStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -9206,15 +9551,20 @@ type IWorkdirStmtContext interface {
 }
 
 type WorkdirStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyWorkdirStmtContext() *WorkdirStmtContext {
 	var p = new(WorkdirStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_workdirStmt
 	return p
+}
+
+func InitEmptyWorkdirStmtContext(p *WorkdirStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_workdirStmt
 }
 
 func (*WorkdirStmtContext) IsWorkdirStmtContext() {}
@@ -9222,7 +9572,7 @@ func (*WorkdirStmtContext) IsWorkdirStmtContext() {}
 func NewWorkdirStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WorkdirStmtContext {
 	var p = new(WorkdirStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_workdirStmt
@@ -9277,37 +9627,24 @@ func (s *WorkdirStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) WorkdirStmt() (localctx IWorkdirStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewWorkdirStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 102, EarthParserRULE_workdirStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(584)
 		p.Match(EarthParserWORKDIR)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(586)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -9321,7 +9658,17 @@ func (p *EarthParser) WorkdirStmt() (localctx IWorkdirStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -9341,15 +9688,20 @@ type IUserStmtContext interface {
 }
 
 type UserStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyUserStmtContext() *UserStmtContext {
 	var p = new(UserStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_userStmt
 	return p
+}
+
+func InitEmptyUserStmtContext(p *UserStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_userStmt
 }
 
 func (*UserStmtContext) IsUserStmtContext() {}
@@ -9357,7 +9709,7 @@ func (*UserStmtContext) IsUserStmtContext() {}
 func NewUserStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *UserStmtContext {
 	var p = new(UserStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_userStmt
@@ -9412,37 +9764,24 @@ func (s *UserStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) UserStmt() (localctx IUserStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewUserStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 104, EarthParserRULE_userStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(588)
 		p.Match(EarthParserUSER)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(590)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -9456,7 +9795,17 @@ func (p *EarthParser) UserStmt() (localctx IUserStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -9476,15 +9825,20 @@ type ICmdStmtContext interface {
 }
 
 type CmdStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyCmdStmtContext() *CmdStmtContext {
 	var p = new(CmdStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_cmdStmt
 	return p
+}
+
+func InitEmptyCmdStmtContext(p *CmdStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_cmdStmt
 }
 
 func (*CmdStmtContext) IsCmdStmtContext() {}
@@ -9492,7 +9846,7 @@ func (*CmdStmtContext) IsCmdStmtContext() {}
 func NewCmdStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CmdStmtContext {
 	var p = new(CmdStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_cmdStmt
@@ -9547,37 +9901,24 @@ func (s *CmdStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) CmdStmt() (localctx ICmdStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewCmdStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 106, EarthParserRULE_cmdStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(592)
 		p.Match(EarthParserCMD)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(594)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -9591,7 +9932,17 @@ func (p *EarthParser) CmdStmt() (localctx ICmdStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -9611,15 +9962,20 @@ type IEntrypointStmtContext interface {
 }
 
 type EntrypointStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyEntrypointStmtContext() *EntrypointStmtContext {
 	var p = new(EntrypointStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_entrypointStmt
 	return p
+}
+
+func InitEmptyEntrypointStmtContext(p *EntrypointStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_entrypointStmt
 }
 
 func (*EntrypointStmtContext) IsEntrypointStmtContext() {}
@@ -9627,7 +9983,7 @@ func (*EntrypointStmtContext) IsEntrypointStmtContext() {}
 func NewEntrypointStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *EntrypointStmtContext {
 	var p = new(EntrypointStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_entrypointStmt
@@ -9682,37 +10038,24 @@ func (s *EntrypointStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) EntrypointStmt() (localctx IEntrypointStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewEntrypointStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 108, EarthParserRULE_entrypointStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(596)
 		p.Match(EarthParserENTRYPOINT)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(598)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -9726,7 +10069,17 @@ func (p *EarthParser) EntrypointStmt() (localctx IEntrypointStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -9746,15 +10099,20 @@ type IExposeStmtContext interface {
 }
 
 type ExposeStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyExposeStmtContext() *ExposeStmtContext {
 	var p = new(ExposeStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_exposeStmt
 	return p
+}
+
+func InitEmptyExposeStmtContext(p *ExposeStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_exposeStmt
 }
 
 func (*ExposeStmtContext) IsExposeStmtContext() {}
@@ -9762,7 +10120,7 @@ func (*ExposeStmtContext) IsExposeStmtContext() {}
 func NewExposeStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ExposeStmtContext {
 	var p = new(ExposeStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_exposeStmt
@@ -9817,37 +10175,24 @@ func (s *ExposeStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ExposeStmt() (localctx IExposeStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewExposeStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 110, EarthParserRULE_exposeStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(600)
 		p.Match(EarthParserEXPOSE)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(602)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -9861,7 +10206,17 @@ func (p *EarthParser) ExposeStmt() (localctx IExposeStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -9881,15 +10236,20 @@ type IVolumeStmtContext interface {
 }
 
 type VolumeStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyVolumeStmtContext() *VolumeStmtContext {
 	var p = new(VolumeStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_volumeStmt
 	return p
+}
+
+func InitEmptyVolumeStmtContext(p *VolumeStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_volumeStmt
 }
 
 func (*VolumeStmtContext) IsVolumeStmtContext() {}
@@ -9897,7 +10257,7 @@ func (*VolumeStmtContext) IsVolumeStmtContext() {}
 func NewVolumeStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *VolumeStmtContext {
 	var p = new(VolumeStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_volumeStmt
@@ -9952,37 +10312,24 @@ func (s *VolumeStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) VolumeStmt() (localctx IVolumeStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewVolumeStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 112, EarthParserRULE_volumeStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(604)
 		p.Match(EarthParserVOLUME)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(606)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -9996,7 +10343,17 @@ func (p *EarthParser) VolumeStmt() (localctx IVolumeStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -10019,15 +10376,20 @@ type IEnvStmtContext interface {
 }
 
 type EnvStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyEnvStmtContext() *EnvStmtContext {
 	var p = new(EnvStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_envStmt
 	return p
+}
+
+func InitEmptyEnvStmtContext(p *EnvStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_envStmt
 }
 
 func (*EnvStmtContext) IsEnvStmtContext() {}
@@ -10035,7 +10397,7 @@ func (*EnvStmtContext) IsEnvStmtContext() {}
 func NewEnvStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *EnvStmtContext {
 	var p = new(EnvStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_envStmt
@@ -10114,34 +10476,18 @@ func (s *EnvStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) EnvStmt() (localctx IEnvStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewEnvStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 114, EarthParserRULE_envStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(608)
 		p.Match(EarthParserENV)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	{
 		p.SetState(609)
@@ -10149,6 +10495,9 @@ func (p *EarthParser) EnvStmt() (localctx IEnvStmtContext) {
 	}
 	p.SetState(611)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -10156,17 +10505,27 @@ func (p *EarthParser) EnvStmt() (localctx IEnvStmtContext) {
 		{
 			p.SetState(610)
 			p.Match(EarthParserEQUALS)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 	}
 	p.SetState(617)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
 	if _la == EarthParserWS || _la == EarthParserAtom {
 		p.SetState(614)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -10174,6 +10533,10 @@ func (p *EarthParser) EnvStmt() (localctx IEnvStmtContext) {
 			{
 				p.SetState(613)
 				p.Match(EarthParserWS)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 		}
@@ -10186,7 +10549,17 @@ func (p *EarthParser) EnvStmt() (localctx IEnvStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -10210,15 +10583,20 @@ type IArgStmtContext interface {
 }
 
 type ArgStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyArgStmtContext() *ArgStmtContext {
 	var p = new(ArgStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_argStmt
 	return p
+}
+
+func InitEmptyArgStmtContext(p *ArgStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_argStmt
 }
 
 func (*ArgStmtContext) IsArgStmtContext() {}
@@ -10226,7 +10604,7 @@ func (*ArgStmtContext) IsArgStmtContext() {}
 func NewArgStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ArgStmtContext {
 	var p = new(ArgStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_argStmt
@@ -10321,34 +10699,18 @@ func (s *ArgStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ArgStmt() (localctx IArgStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewArgStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 116, EarthParserRULE_argStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(619)
 		p.Match(EarthParserARG)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	{
 		p.SetState(620)
@@ -10360,6 +10722,9 @@ func (p *EarthParser) ArgStmt() (localctx IArgStmtContext) {
 	}
 	p.SetState(629)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -10367,15 +10732,25 @@ func (p *EarthParser) ArgStmt() (localctx IArgStmtContext) {
 		{
 			p.SetState(622)
 			p.Match(EarthParserEQUALS)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 		p.SetState(627)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
 		if _la == EarthParserWS || _la == EarthParserAtom {
 			p.SetState(624)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
 			_la = p.GetTokenStream().LA(1)
 
 
@@ -10383,6 +10758,10 @@ func (p *EarthParser) ArgStmt() (localctx IArgStmtContext) {
 				{
 					p.SetState(623)
 					p.Match(EarthParserWS)
+					if p.HasError() {
+							// Recognition error - abort rule
+							goto errorExit
+					}
 				}
 
 			}
@@ -10397,7 +10776,17 @@ func (p *EarthParser) ArgStmt() (localctx IArgStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -10420,15 +10809,20 @@ type ISetStmtContext interface {
 }
 
 type SetStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptySetStmtContext() *SetStmtContext {
 	var p = new(SetStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_setStmt
 	return p
+}
+
+func InitEmptySetStmtContext(p *SetStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_setStmt
 }
 
 func (*SetStmtContext) IsSetStmtContext() {}
@@ -10436,7 +10830,7 @@ func (*SetStmtContext) IsSetStmtContext() {}
 func NewSetStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SetStmtContext {
 	var p = new(SetStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_setStmt
@@ -10515,34 +10909,18 @@ func (s *SetStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) SetStmt() (localctx ISetStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewSetStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 118, EarthParserRULE_setStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(631)
 		p.Match(EarthParserSET)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	{
 		p.SetState(632)
@@ -10551,9 +10929,16 @@ func (p *EarthParser) SetStmt() (localctx ISetStmtContext) {
 	{
 		p.SetState(633)
 		p.Match(EarthParserEQUALS)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(635)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -10561,6 +10946,10 @@ func (p *EarthParser) SetStmt() (localctx ISetStmtContext) {
 		{
 			p.SetState(634)
 			p.Match(EarthParserWS)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 	}
@@ -10571,7 +10960,17 @@ func (p *EarthParser) SetStmt() (localctx ISetStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -10595,15 +10994,20 @@ type ILetStmtContext interface {
 }
 
 type LetStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyLetStmtContext() *LetStmtContext {
 	var p = new(LetStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_letStmt
 	return p
+}
+
+func InitEmptyLetStmtContext(p *LetStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_letStmt
 }
 
 func (*LetStmtContext) IsLetStmtContext() {}
@@ -10611,7 +11015,7 @@ func (*LetStmtContext) IsLetStmtContext() {}
 func NewLetStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *LetStmtContext {
 	var p = new(LetStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_letStmt
@@ -10706,34 +11110,18 @@ func (s *LetStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) LetStmt() (localctx ILetStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewLetStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 120, EarthParserRULE_letStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(639)
 		p.Match(EarthParserLET)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	{
 		p.SetState(640)
@@ -10746,9 +11134,16 @@ func (p *EarthParser) LetStmt() (localctx ILetStmtContext) {
 	{
 		p.SetState(642)
 		p.Match(EarthParserEQUALS)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(644)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -10756,6 +11151,10 @@ func (p *EarthParser) LetStmt() (localctx ILetStmtContext) {
 		{
 			p.SetState(643)
 			p.Match(EarthParserWS)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 	}
@@ -10766,7 +11165,17 @@ func (p *EarthParser) LetStmt() (localctx ILetStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -10785,15 +11194,20 @@ type IOptionalFlagContext interface {
 }
 
 type OptionalFlagContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyOptionalFlagContext() *OptionalFlagContext {
 	var p = new(OptionalFlagContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_optionalFlag
 	return p
+}
+
+func InitEmptyOptionalFlagContext(p *OptionalFlagContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_optionalFlag
 }
 
 func (*OptionalFlagContext) IsOptionalFlagContext() {}
@@ -10801,7 +11215,7 @@ func (*OptionalFlagContext) IsOptionalFlagContext() {}
 func NewOptionalFlagContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *OptionalFlagContext {
 	var p = new(OptionalFlagContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_optionalFlag
@@ -10852,45 +11266,36 @@ func (s *OptionalFlagContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) OptionalFlag() (localctx IOptionalFlagContext) {
-	this := p
-	_ = this
-
 	localctx = NewOptionalFlagContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 122, EarthParserRULE_optionalFlag)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	p.SetState(649)
 	p.GetErrorHandler().Sync(p)
 
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 83, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 83, p.GetParserRuleContext()) == 1 {
 		{
 			p.SetState(648)
 			p.StmtWords()
 		}
 
-
+		} else if p.HasError() { // JIM
+			goto errorExit
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -10909,15 +11314,20 @@ type IEnvArgKeyContext interface {
 }
 
 type EnvArgKeyContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyEnvArgKeyContext() *EnvArgKeyContext {
 	var p = new(EnvArgKeyContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_envArgKey
 	return p
+}
+
+func InitEmptyEnvArgKeyContext(p *EnvArgKeyContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_envArgKey
 }
 
 func (*EnvArgKeyContext) IsEnvArgKeyContext() {}
@@ -10925,7 +11335,7 @@ func (*EnvArgKeyContext) IsEnvArgKeyContext() {}
 func NewEnvArgKeyContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *EnvArgKeyContext {
 	var p = new(EnvArgKeyContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_envArgKey
@@ -10964,37 +11374,31 @@ func (s *EnvArgKeyContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) EnvArgKey() (localctx IEnvArgKeyContext) {
-	this := p
-	_ = this
-
 	localctx = NewEnvArgKeyContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 124, EarthParserRULE_envArgKey)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(651)
 		p.Match(EarthParserAtom)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -11016,15 +11420,20 @@ type IEnvArgValueContext interface {
 }
 
 type EnvArgValueContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyEnvArgValueContext() *EnvArgValueContext {
 	var p = new(EnvArgValueContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_envArgValue
 	return p
+}
+
+func InitEmptyEnvArgValueContext(p *EnvArgValueContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_envArgValue
 }
 
 func (*EnvArgValueContext) IsEnvArgValueContext() {}
@@ -11032,7 +11441,7 @@ func (*EnvArgValueContext) IsEnvArgValueContext() {}
 func NewEnvArgValueContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *EnvArgValueContext {
 	var p = new(EnvArgValueContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_envArgValue
@@ -11083,43 +11492,33 @@ func (s *EnvArgValueContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) EnvArgValue() (localctx IEnvArgValueContext) {
-	this := p
-	_ = this
-
 	localctx = NewEnvArgValueContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 126, EarthParserRULE_envArgValue)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(653)
 		p.Match(EarthParserAtom)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(660)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
 	for _la == EarthParserWS || _la == EarthParserAtom {
 		p.SetState(655)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 
@@ -11127,23 +11526,44 @@ func (p *EarthParser) EnvArgValue() (localctx IEnvArgValueContext) {
 			{
 				p.SetState(654)
 				p.Match(EarthParserWS)
+				if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+				}
 			}
 
 		}
 		{
 			p.SetState(657)
 			p.Match(EarthParserAtom)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 
 
 		p.SetState(662)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+	    	goto errorExit
+	    }
 		_la = p.GetTokenStream().LA(1)
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -11168,15 +11588,20 @@ type ILabelStmtContext interface {
 }
 
 type LabelStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyLabelStmtContext() *LabelStmtContext {
 	var p = new(LabelStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_labelStmt
 	return p
+}
+
+func InitEmptyLabelStmtContext(p *LabelStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_labelStmt
 }
 
 func (*LabelStmtContext) IsLabelStmtContext() {}
@@ -11184,7 +11609,7 @@ func (*LabelStmtContext) IsLabelStmtContext() {}
 func NewLabelStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *LabelStmtContext {
 	var p = new(LabelStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_labelStmt
@@ -11313,37 +11738,24 @@ func (s *LabelStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) LabelStmt() (localctx ILabelStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewLabelStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 128, EarthParserRULE_labelStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(663)
 		p.Match(EarthParserLABEL)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(670)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -11355,6 +11767,10 @@ func (p *EarthParser) LabelStmt() (localctx ILabelStmtContext) {
 		{
 			p.SetState(665)
 			p.Match(EarthParserEQUALS)
+			if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+			}
 		}
 		{
 			p.SetState(666)
@@ -11364,12 +11780,25 @@ func (p *EarthParser) LabelStmt() (localctx ILabelStmtContext) {
 
 		p.SetState(672)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+	    	goto errorExit
+	    }
 		_la = p.GetTokenStream().LA(1)
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -11388,15 +11817,20 @@ type ILabelKeyContext interface {
 }
 
 type LabelKeyContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyLabelKeyContext() *LabelKeyContext {
 	var p = new(LabelKeyContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_labelKey
 	return p
+}
+
+func InitEmptyLabelKeyContext(p *LabelKeyContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_labelKey
 }
 
 func (*LabelKeyContext) IsLabelKeyContext() {}
@@ -11404,7 +11838,7 @@ func (*LabelKeyContext) IsLabelKeyContext() {}
 func NewLabelKeyContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *LabelKeyContext {
 	var p = new(LabelKeyContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_labelKey
@@ -11443,37 +11877,31 @@ func (s *LabelKeyContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) LabelKey() (localctx ILabelKeyContext) {
-	this := p
-	_ = this
-
 	localctx = NewLabelKeyContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 130, EarthParserRULE_labelKey)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(673)
 		p.Match(EarthParserAtom)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -11492,15 +11920,20 @@ type ILabelValueContext interface {
 }
 
 type LabelValueContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyLabelValueContext() *LabelValueContext {
 	var p = new(LabelValueContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_labelValue
 	return p
+}
+
+func InitEmptyLabelValueContext(p *LabelValueContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_labelValue
 }
 
 func (*LabelValueContext) IsLabelValueContext() {}
@@ -11508,7 +11941,7 @@ func (*LabelValueContext) IsLabelValueContext() {}
 func NewLabelValueContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *LabelValueContext {
 	var p = new(LabelValueContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_labelValue
@@ -11547,37 +11980,31 @@ func (s *LabelValueContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) LabelValue() (localctx ILabelValueContext) {
-	this := p
-	_ = this
-
 	localctx = NewLabelValueContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 132, EarthParserRULE_labelValue)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(675)
 		p.Match(EarthParserAtom)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -11597,15 +12024,20 @@ type IGitCloneStmtContext interface {
 }
 
 type GitCloneStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyGitCloneStmtContext() *GitCloneStmtContext {
 	var p = new(GitCloneStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_gitCloneStmt
 	return p
+}
+
+func InitEmptyGitCloneStmtContext(p *GitCloneStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_gitCloneStmt
 }
 
 func (*GitCloneStmtContext) IsGitCloneStmtContext() {}
@@ -11613,7 +12045,7 @@ func (*GitCloneStmtContext) IsGitCloneStmtContext() {}
 func NewGitCloneStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *GitCloneStmtContext {
 	var p = new(GitCloneStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_gitCloneStmt
@@ -11668,37 +12100,24 @@ func (s *GitCloneStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) GitCloneStmt() (localctx IGitCloneStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewGitCloneStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 134, EarthParserRULE_gitCloneStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(677)
 		p.Match(EarthParserGIT_CLONE)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(679)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -11712,7 +12131,17 @@ func (p *EarthParser) GitCloneStmt() (localctx IGitCloneStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -11732,15 +12161,20 @@ type IAddStmtContext interface {
 }
 
 type AddStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyAddStmtContext() *AddStmtContext {
 	var p = new(AddStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_addStmt
 	return p
+}
+
+func InitEmptyAddStmtContext(p *AddStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_addStmt
 }
 
 func (*AddStmtContext) IsAddStmtContext() {}
@@ -11748,7 +12182,7 @@ func (*AddStmtContext) IsAddStmtContext() {}
 func NewAddStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *AddStmtContext {
 	var p = new(AddStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_addStmt
@@ -11803,37 +12237,24 @@ func (s *AddStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) AddStmt() (localctx IAddStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewAddStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 136, EarthParserRULE_addStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(681)
 		p.Match(EarthParserADD)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(683)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -11847,7 +12268,17 @@ func (p *EarthParser) AddStmt() (localctx IAddStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -11867,15 +12298,20 @@ type IStopsignalStmtContext interface {
 }
 
 type StopsignalStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyStopsignalStmtContext() *StopsignalStmtContext {
 	var p = new(StopsignalStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_stopsignalStmt
 	return p
+}
+
+func InitEmptyStopsignalStmtContext(p *StopsignalStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_stopsignalStmt
 }
 
 func (*StopsignalStmtContext) IsStopsignalStmtContext() {}
@@ -11883,7 +12319,7 @@ func (*StopsignalStmtContext) IsStopsignalStmtContext() {}
 func NewStopsignalStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *StopsignalStmtContext {
 	var p = new(StopsignalStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_stopsignalStmt
@@ -11938,37 +12374,24 @@ func (s *StopsignalStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) StopsignalStmt() (localctx IStopsignalStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewStopsignalStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 138, EarthParserRULE_stopsignalStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(685)
 		p.Match(EarthParserSTOPSIGNAL)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(687)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -11982,7 +12405,17 @@ func (p *EarthParser) StopsignalStmt() (localctx IStopsignalStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -12002,15 +12435,20 @@ type IOnbuildStmtContext interface {
 }
 
 type OnbuildStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyOnbuildStmtContext() *OnbuildStmtContext {
 	var p = new(OnbuildStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_onbuildStmt
 	return p
+}
+
+func InitEmptyOnbuildStmtContext(p *OnbuildStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_onbuildStmt
 }
 
 func (*OnbuildStmtContext) IsOnbuildStmtContext() {}
@@ -12018,7 +12456,7 @@ func (*OnbuildStmtContext) IsOnbuildStmtContext() {}
 func NewOnbuildStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *OnbuildStmtContext {
 	var p = new(OnbuildStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_onbuildStmt
@@ -12073,37 +12511,24 @@ func (s *OnbuildStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) OnbuildStmt() (localctx IOnbuildStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewOnbuildStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 140, EarthParserRULE_onbuildStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(689)
 		p.Match(EarthParserONBUILD)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(691)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -12117,7 +12542,17 @@ func (p *EarthParser) OnbuildStmt() (localctx IOnbuildStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -12137,15 +12572,20 @@ type IHealthcheckStmtContext interface {
 }
 
 type HealthcheckStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyHealthcheckStmtContext() *HealthcheckStmtContext {
 	var p = new(HealthcheckStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_healthcheckStmt
 	return p
+}
+
+func InitEmptyHealthcheckStmtContext(p *HealthcheckStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_healthcheckStmt
 }
 
 func (*HealthcheckStmtContext) IsHealthcheckStmtContext() {}
@@ -12153,7 +12593,7 @@ func (*HealthcheckStmtContext) IsHealthcheckStmtContext() {}
 func NewHealthcheckStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *HealthcheckStmtContext {
 	var p = new(HealthcheckStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_healthcheckStmt
@@ -12208,37 +12648,24 @@ func (s *HealthcheckStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) HealthcheckStmt() (localctx IHealthcheckStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewHealthcheckStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 142, EarthParserRULE_healthcheckStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(693)
 		p.Match(EarthParserHEALTHCHECK)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(695)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -12252,7 +12679,17 @@ func (p *EarthParser) HealthcheckStmt() (localctx IHealthcheckStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -12272,15 +12709,20 @@ type IShellStmtContext interface {
 }
 
 type ShellStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyShellStmtContext() *ShellStmtContext {
 	var p = new(ShellStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_shellStmt
 	return p
+}
+
+func InitEmptyShellStmtContext(p *ShellStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_shellStmt
 }
 
 func (*ShellStmtContext) IsShellStmtContext() {}
@@ -12288,7 +12730,7 @@ func (*ShellStmtContext) IsShellStmtContext() {}
 func NewShellStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ShellStmtContext {
 	var p = new(ShellStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_shellStmt
@@ -12343,37 +12785,24 @@ func (s *ShellStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ShellStmt() (localctx IShellStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewShellStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 144, EarthParserRULE_shellStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(697)
 		p.Match(EarthParserSHELL)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(699)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -12387,7 +12816,17 @@ func (p *EarthParser) ShellStmt() (localctx IShellStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -12407,15 +12846,20 @@ type IUserCommandStmtContext interface {
 }
 
 type UserCommandStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyUserCommandStmtContext() *UserCommandStmtContext {
 	var p = new(UserCommandStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_userCommandStmt
 	return p
+}
+
+func InitEmptyUserCommandStmtContext(p *UserCommandStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_userCommandStmt
 }
 
 func (*UserCommandStmtContext) IsUserCommandStmtContext() {}
@@ -12423,7 +12867,7 @@ func (*UserCommandStmtContext) IsUserCommandStmtContext() {}
 func NewUserCommandStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *UserCommandStmtContext {
 	var p = new(UserCommandStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_userCommandStmt
@@ -12478,37 +12922,24 @@ func (s *UserCommandStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) UserCommandStmt() (localctx IUserCommandStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewUserCommandStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 146, EarthParserRULE_userCommandStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(701)
 		p.Match(EarthParserCOMMAND)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(703)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -12522,7 +12953,17 @@ func (p *EarthParser) UserCommandStmt() (localctx IUserCommandStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -12542,15 +12983,20 @@ type IFunctionStmtContext interface {
 }
 
 type FunctionStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyFunctionStmtContext() *FunctionStmtContext {
 	var p = new(FunctionStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_functionStmt
 	return p
+}
+
+func InitEmptyFunctionStmtContext(p *FunctionStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_functionStmt
 }
 
 func (*FunctionStmtContext) IsFunctionStmtContext() {}
@@ -12558,7 +13004,7 @@ func (*FunctionStmtContext) IsFunctionStmtContext() {}
 func NewFunctionStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *FunctionStmtContext {
 	var p = new(FunctionStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_functionStmt
@@ -12613,37 +13059,24 @@ func (s *FunctionStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) FunctionStmt() (localctx IFunctionStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewFunctionStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 148, EarthParserRULE_functionStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(705)
 		p.Match(EarthParserFUNCTION)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(707)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -12657,7 +13090,17 @@ func (p *EarthParser) FunctionStmt() (localctx IFunctionStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -12677,15 +13120,20 @@ type IDoStmtContext interface {
 }
 
 type DoStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyDoStmtContext() *DoStmtContext {
 	var p = new(DoStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_doStmt
 	return p
+}
+
+func InitEmptyDoStmtContext(p *DoStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_doStmt
 }
 
 func (*DoStmtContext) IsDoStmtContext() {}
@@ -12693,7 +13141,7 @@ func (*DoStmtContext) IsDoStmtContext() {}
 func NewDoStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *DoStmtContext {
 	var p = new(DoStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_doStmt
@@ -12748,37 +13196,24 @@ func (s *DoStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) DoStmt() (localctx IDoStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewDoStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 150, EarthParserRULE_doStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(709)
 		p.Match(EarthParserDO)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(711)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -12792,7 +13227,17 @@ func (p *EarthParser) DoStmt() (localctx IDoStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -12812,15 +13257,20 @@ type IImportStmtContext interface {
 }
 
 type ImportStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyImportStmtContext() *ImportStmtContext {
 	var p = new(ImportStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_importStmt
 	return p
+}
+
+func InitEmptyImportStmtContext(p *ImportStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_importStmt
 }
 
 func (*ImportStmtContext) IsImportStmtContext() {}
@@ -12828,7 +13278,7 @@ func (*ImportStmtContext) IsImportStmtContext() {}
 func NewImportStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ImportStmtContext {
 	var p = new(ImportStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_importStmt
@@ -12883,37 +13333,24 @@ func (s *ImportStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ImportStmt() (localctx IImportStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewImportStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 152, EarthParserRULE_importStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(713)
 		p.Match(EarthParserIMPORT)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(715)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -12927,7 +13364,17 @@ func (p *EarthParser) ImportStmt() (localctx IImportStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -12947,15 +13394,20 @@ type ICacheStmtContext interface {
 }
 
 type CacheStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyCacheStmtContext() *CacheStmtContext {
 	var p = new(CacheStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_cacheStmt
 	return p
+}
+
+func InitEmptyCacheStmtContext(p *CacheStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_cacheStmt
 }
 
 func (*CacheStmtContext) IsCacheStmtContext() {}
@@ -12963,7 +13415,7 @@ func (*CacheStmtContext) IsCacheStmtContext() {}
 func NewCacheStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CacheStmtContext {
 	var p = new(CacheStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_cacheStmt
@@ -13018,37 +13470,24 @@ func (s *CacheStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) CacheStmt() (localctx ICacheStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewCacheStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 154, EarthParserRULE_cacheStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(717)
 		p.Match(EarthParserCACHE)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(719)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -13062,7 +13501,17 @@ func (p *EarthParser) CacheStmt() (localctx ICacheStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -13082,15 +13531,20 @@ type IHostStmtContext interface {
 }
 
 type HostStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyHostStmtContext() *HostStmtContext {
 	var p = new(HostStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_hostStmt
 	return p
+}
+
+func InitEmptyHostStmtContext(p *HostStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_hostStmt
 }
 
 func (*HostStmtContext) IsHostStmtContext() {}
@@ -13098,7 +13552,7 @@ func (*HostStmtContext) IsHostStmtContext() {}
 func NewHostStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *HostStmtContext {
 	var p = new(HostStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_hostStmt
@@ -13153,37 +13607,24 @@ func (s *HostStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) HostStmt() (localctx IHostStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewHostStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 156, EarthParserRULE_hostStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(721)
 		p.Match(EarthParserHOST)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(723)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -13197,7 +13638,17 @@ func (p *EarthParser) HostStmt() (localctx IHostStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -13217,15 +13668,20 @@ type IProjectStmtContext interface {
 }
 
 type ProjectStmtContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyProjectStmtContext() *ProjectStmtContext {
 	var p = new(ProjectStmtContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_projectStmt
 	return p
+}
+
+func InitEmptyProjectStmtContext(p *ProjectStmtContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_projectStmt
 }
 
 func (*ProjectStmtContext) IsProjectStmtContext() {}
@@ -13233,7 +13689,7 @@ func (*ProjectStmtContext) IsProjectStmtContext() {}
 func NewProjectStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ProjectStmtContext {
 	var p = new(ProjectStmtContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_projectStmt
@@ -13288,37 +13744,24 @@ func (s *ProjectStmtContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) ProjectStmt() (localctx IProjectStmtContext) {
-	this := p
-	_ = this
-
 	localctx = NewProjectStmtContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 158, EarthParserRULE_projectStmt)
 	var _la int
-
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(725)
 		p.Match(EarthParserPROJECT)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 	p.SetState(727)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 
@@ -13332,7 +13775,17 @@ func (p *EarthParser) ProjectStmt() (localctx IProjectStmtContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -13351,15 +13804,20 @@ type IExprContext interface {
 }
 
 type ExprContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyExprContext() *ExprContext {
 	var p = new(ExprContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_expr
 	return p
+}
+
+func InitEmptyExprContext(p *ExprContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_expr
 }
 
 func (*ExprContext) IsExprContext() {}
@@ -13367,7 +13825,7 @@ func (*ExprContext) IsExprContext() {}
 func NewExprContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ExprContext {
 	var p = new(ExprContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_expr
@@ -13418,28 +13876,8 @@ func (s *ExprContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) Expr() (localctx IExprContext) {
-	this := p
-	_ = this
-
 	localctx = NewExprContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 160, EarthParserRULE_expr)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(729)
@@ -13448,7 +13886,17 @@ func (p *EarthParser) Expr() (localctx IExprContext) {
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -13467,15 +13915,20 @@ type IStmtWordsMaybeJSONContext interface {
 }
 
 type StmtWordsMaybeJSONContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyStmtWordsMaybeJSONContext() *StmtWordsMaybeJSONContext {
 	var p = new(StmtWordsMaybeJSONContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_stmtWordsMaybeJSON
 	return p
+}
+
+func InitEmptyStmtWordsMaybeJSONContext(p *StmtWordsMaybeJSONContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_stmtWordsMaybeJSON
 }
 
 func (*StmtWordsMaybeJSONContext) IsStmtWordsMaybeJSONContext() {}
@@ -13483,7 +13936,7 @@ func (*StmtWordsMaybeJSONContext) IsStmtWordsMaybeJSONContext() {}
 func NewStmtWordsMaybeJSONContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *StmtWordsMaybeJSONContext {
 	var p = new(StmtWordsMaybeJSONContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_stmtWordsMaybeJSON
@@ -13534,28 +13987,8 @@ func (s *StmtWordsMaybeJSONContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) StmtWordsMaybeJSON() (localctx IStmtWordsMaybeJSONContext) {
-	this := p
-	_ = this
-
 	localctx = NewStmtWordsMaybeJSONContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 162, EarthParserRULE_stmtWordsMaybeJSON)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(731)
@@ -13564,7 +13997,17 @@ func (p *EarthParser) StmtWordsMaybeJSON() (localctx IStmtWordsMaybeJSONContext)
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -13584,15 +14027,20 @@ type IStmtWordsContext interface {
 }
 
 type StmtWordsContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyStmtWordsContext() *StmtWordsContext {
 	var p = new(StmtWordsContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_stmtWords
 	return p
+}
+
+func InitEmptyStmtWordsContext(p *StmtWordsContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_stmtWords
 }
 
 func (*StmtWordsContext) IsStmtWordsContext() {}
@@ -13600,7 +14048,7 @@ func (*StmtWordsContext) IsStmtWordsContext() {}
 func NewStmtWordsContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *StmtWordsContext {
 	var p = new(StmtWordsContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_stmtWords
@@ -13676,33 +14124,16 @@ func (s *StmtWordsContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) StmtWords() (localctx IStmtWordsContext) {
-	this := p
-	_ = this
-
 	localctx = NewStmtWordsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 164, EarthParserRULE_stmtWords)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
 	p.SetState(734)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_alt = 1
 	for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		switch _alt {
@@ -13716,17 +14147,31 @@ func (p *EarthParser) StmtWords() (localctx IStmtWordsContext) {
 
 
 		default:
-			panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+			p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+			goto errorExit
 		}
 
 		p.SetState(736)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 100, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 100, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 
@@ -13745,15 +14190,20 @@ type IStmtWordContext interface {
 }
 
 type StmtWordContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyStmtWordContext() *StmtWordContext {
 	var p = new(StmtWordContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = EarthParserRULE_stmtWord
 	return p
+}
+
+func InitEmptyStmtWordContext(p *StmtWordContext)  {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = EarthParserRULE_stmtWord
 }
 
 func (*StmtWordContext) IsStmtWordContext() {}
@@ -13761,7 +14211,7 @@ func (*StmtWordContext) IsStmtWordContext() {}
 func NewStmtWordContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *StmtWordContext {
 	var p = new(StmtWordContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = EarthParserRULE_stmtWord
@@ -13800,37 +14250,31 @@ func (s *StmtWordContext) ExitRule(listener antlr.ParseTreeListener) {
 
 
 func (p *EarthParser) StmtWord() (localctx IStmtWordContext) {
-	this := p
-	_ = this
-
 	localctx = NewStmtWordContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 166, EarthParserRULE_stmtWord)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(738)
 		p.Match(EarthParserAtom)
+		if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+		}
 	}
 
 
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 

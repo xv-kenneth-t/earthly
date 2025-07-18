@@ -6,7 +6,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/antlr4-go/antlr/v4"
 	"github.com/earthly/earthly/ast/antlrhandler"
 	"github.com/earthly/earthly/ast/hint"
 	"github.com/earthly/earthly/ast/parser"

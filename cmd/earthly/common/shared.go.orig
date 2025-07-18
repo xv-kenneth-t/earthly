@@ -7,7 +7,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"net"
 	"os"
 	"path"
 	"runtime"
@@ -121,54 +120,6 @@ func ProcessSecrets(secrets, secretFiles []string, dotEnvMap map[string]string, 
 	return finalSecrets, nil
 }
 
-// TODO: this is duplicated from ProcessSecrets and possibly something to refactor in the future
-func ProcessSockets(sockets []string) (map[string]string, error) {
-	finalSockets := make(map[string]string)
-
-	for _, socket := range sockets {
-		parts := strings.SplitN(socket, "=", 2)
-		key := parts[0]
-		var data string
-
-		if _, ok := finalSockets[key]; ok {
-			return nil, hint.Wrapf(
-				errors.Errorf("failed to set socket %q via --socket flag", key),
-				"Check the socket %q has not already been passed more than once to the command",
-				key,
-			)
-		}
-
-		if len(parts) == 2 {
-			// socket value passed as argument
-			data = parts[1]
-		} else {
-			// Not set. Use environment to fetch it.
-			value, found := os.LookupEnv(socket)
-			if !found {
-				return nil, hint.Wrapf(
-					errors.Errorf("failed to set socket %q via --socket flag without a value", socket),
-					"Try to set an env var by the name %q with the socket value or pass the value as part of the --socket flag",
-					socket,
-				)
-			}
-
-			data = value
-		}
-
-		if err := CheckSocket(data); err != nil {
-			return nil, hint.Wrapf(
-				err,
-				"Check that the socket %q points to a valid socket and is able to read/write to it",
-				socket,
-			)
-		}
-
-		finalSockets[key] = data
-	}
-
-	return finalSockets, nil
-}
-
 func GetPlatform() string {
 	h, err := gsysinfo.Host()
 	if err != nil {
@@ -231,29 +182,4 @@ func IsEarthlyBinary(path string) bool {
 		return false
 	}
 	return true
-}
-
-func CheckSocket(path string) error {
-	// Check if the file exists
-	info, err := os.Stat(path)
-	if err != nil {
-		if os.IsNotExist(err) {
-			return fmt.Errorf("file does not exist: %s", path)
-		}
-		return fmt.Errorf("error stating file: %w", err)
-	}
-
-	// Check if it's a socket
-	if info.Mode()&os.ModeSocket == 0 {
-		return fmt.Errorf("file is not a socket: %s", path)
-	}
-
-	// Try connecting to the socket to check accessibility
-	conn, err := net.Dial("unix", path)
-	if err != nil {
-		return fmt.Errorf("cannot connect to socket: %w", err)
-	}
-	defer conn.Close()
-
-	return nil
 }

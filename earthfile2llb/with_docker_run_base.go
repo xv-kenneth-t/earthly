@@ -46,6 +46,7 @@ type WithDockerOpt struct {
 	Secrets               []string
 	WithShell             bool
 	WithEntrypoint        bool
+	WithGPG               bool
 	WithSSH               bool
 	NoCache               bool
 	Interactive           bool

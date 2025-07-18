@@ -10,7 +10,7 @@ import (
 
 	"github.com/earthly/earthly/debugger/common"
 
-	"github.com/alessio/shellescape"
+	"al.essio.dev/pkg/shellescape"
 	"github.com/moby/buildkit/session/secrets"
 )
 

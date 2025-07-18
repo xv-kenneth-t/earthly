@@ -4,13 +4,11 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"net"
 	"net/url"
 	"os"
 	"path"
 	"path/filepath"
 	"strings"
-	"sync"
 
 	"github.com/containerd/containerd/platforms"
 	"github.com/docker/cli/cli/config"
@@ -75,7 +73,6 @@ type Build struct {
 	secretEnv    cli.StringSlice
 	secrets      cli.StringSlice
 	secretFiles  cli.StringSlice
-	sockets      cli.StringSlice
 	cacheFrom    cli.StringSlice
 	dockerTags   cli.StringSlice
 	dockerTarget string
@@ -332,20 +329,6 @@ func (a *Build) ActionBuildImp(cliCtx *cli.Context, flagArgs, nonFlagArgs []stri
 		}
 	}
 
-	socketsMap, err := common.ProcessSockets(a.sockets.Value())
-	if err != nil {
-		return err
-	}
-
-	// we are treating gpg agent as any other socket but with a default id
-	if a.cli.Flags().GPGAgentSock != "" {
-		if err := common.CheckSocket(a.cli.Flags().GPGAgentSock); err != nil {
-			return err
-		}
-
-		socketsMap["earthly_gpg"] = a.cli.Flags().GPGAgentSock
-	}
-
 	overridingVars, err := common.CombineVariables(argMap, flagArgs, a.buildArgs.Value())
 	if err != nil {
 		return err
@@ -491,7 +474,7 @@ func (a *Build) ActionBuildImp(cliCtx *cli.Context, flagArgs, nonFlagArgs []stri
 
 	localArtifactWhiteList := gatewaycrafter.NewLocalArtifactWhiteList()
 
-	socketAcceptCallbacks := map[string]socketprovider.SocketAcceptCb{
+	socketProvider, err := socketprovider.NewSocketProvider(map[string]socketprovider.SocketAcceptCb{
 		"earthly_save_file": getTryCatchSaveFileHandler(localArtifactWhiteList),
 		"earthly_interactive": func(ctx context.Context, conn io.ReadWriteCloser) error {
 			if !termutil.IsTTY() {
@@ -504,43 +487,9 @@ func (a *Build) ActionBuildImp(cliCtx *cli.Context, flagArgs, nonFlagArgs []stri
 			}
 			return nil
 		},
-	}
-
-	for id, socket := range socketsMap {
-		if _, ok := socketAcceptCallbacks[id]; ok {
-			return fmt.Errorf("socket id %s already exists", id)
-		}
-
-		socketAcceptCallbacks[id] = func(ctx context.Context, conn io.ReadWriteCloser) error {
-			dconn, err := net.Dial("unix", socket)
-			if err != nil {
-				return errors.Wrap(err, "unable to dial socket")
-			}
-
-			var once sync.Once
-			closeAll := func() {
-				dconn.Close()
-			}
-
-			// read from dconn, write to conn
-			go func() {
-				io.Copy(conn, dconn)
-				once.Do(closeAll)
-			}()
-
-			// read from conn, write to dconn
-			go func() {
-				io.Copy(dconn, conn)
-				once.Do(closeAll)
-			}()
-
-			return nil
-		}
-	}
-
-	socketProvider, err := socketprovider.NewSocketProvider(socketAcceptCallbacks)
+	})
 	if err != nil {
-		return errors.Wrap(err, "socket provider")
+		return errors.Wrap(err, "ssh agent provider")
 	}
 	attachables = append(attachables, socketProvider)
 

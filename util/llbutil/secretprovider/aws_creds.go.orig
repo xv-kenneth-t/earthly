@@ -53,14 +53,6 @@ var awsEnvNames = map[string]string{
 var oidcCredsProviderCache = make(map[string]*aws.Config)
 var oidcCredsProviderCacheMU sync.Mutex
 
-// awsCachedConfig stores aws.Config so that SSO-based credentials don't get
-// refreshed with each call to config.LoadDefaultConfig
-var (
-	awsCachedConfig aws.Config
-	awsConfigOnce   sync.Once
-	awsConfigErr    error
-)
-
 // AWSEnvName converts and internal AWS secret name to the equivalent official
 // environmental variable.
 func AWSEnvName(name string) (string, bool) {
@@ -198,7 +190,7 @@ func getCFG(ctx context.Context, orgName string, projectName string, oidcInfo *o
 	if oidcInfo == nil {
 		// no oidc info implies getting the secrets from the host environment
 		// Note: results of this call are cached.
-		cfg, err := awsLoadCachedConfig(ctx, config.WithDefaultsMode(aws.DefaultsModeStandard))
+		cfg, err := config.LoadDefaultConfig(ctx, config.WithDefaultsMode(aws.DefaultsModeStandard))
 		if err != nil {
 			return aws.Config{}, errors.Wrap(err, "failed to load AWS config")
 		}
@@ -257,21 +249,4 @@ func handleError(err error, roleARN, region, orgName, projectName string) error 
 		}
 	}
 	return errors.Wrap(err, "failed to load AWS credentials")
-}
-
-func awsLoadCachedConfig(ctx context.Context, optFns ...func(*config.LoadOptions) error) (aws.Config, error) {
-	awsConfigOnce.Do(func() {
-		cfg, err := config.LoadDefaultConfig(ctx, optFns...)
-		if err != nil {
-			awsConfigErr = err
-			return
-		}
-
-		// Wrap with auto-refreshing credentials cache
-		cfg.Credentials = aws.NewCredentialsCache(cfg.Credentials)
-
-		awsCachedConfig = cfg
-	})
-
-	return awsCachedConfig, awsConfigErr
 }

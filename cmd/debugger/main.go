@@ -17,7 +17,7 @@ import (
 	"github.com/earthly/earthly/debugger/common"
 	"github.com/earthly/earthly/slog"
 
-	"github.com/alessio/shellescape"
+	"al.essio.dev/pkg/shellescape"
 	"github.com/creack/pty"
 	"github.com/fatih/color"
 	"github.com/hashicorp/go-multierror"

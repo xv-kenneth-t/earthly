@@ -10,6 +10,7 @@ import (
 
 type IfOpts struct {
 	Privileged bool     `long:"privileged" description:"Enable privileged mode"`
+	WithGPG    bool     `long:"gpg" description:"Make available the GPG agent of the host"`
 	WithSSH    bool     `long:"ssh" description:"Make available the SSH agent of the host"`
 	NoCache    bool     `long:"no-cache" description:"Always run this specific item, ignoring cache"`
 	Secrets    []string `long:"secret" description:"Make available a secret"`
@@ -18,6 +19,7 @@ type IfOpts struct {
 
 type ForOpts struct {
 	Privileged bool     `long:"privileged" description:"Enable privileged mode"`
+	WithGPG    bool     `long:"gpg" description:"Make available the GPG agent of the host"`
 	WithSSH    bool     `long:"ssh" description:"Make available the SSH agent of the host"`
 	NoCache    bool     `long:"no-cache" description:"Always run this specific item, ignoring cache"`
 	Secrets    []string `long:"secret" description:"Make available a secret"`
@@ -30,6 +32,7 @@ type RunOpts struct {
 	Privileged      bool     `long:"privileged" description:"Enable privileged mode"`
 	WithEntrypoint  bool     `long:"entrypoint" description:"Include the entrypoint of the image when running the command"`
 	WithDocker      bool     `long:"with-docker" description:"Deprecated"`
+	WithGPG         bool     `long:"gpg" description:"Make available the GPG agent of the host"`
 	WithSSH         bool     `long:"ssh" description:"Make available the SSH agent of the host"`
 	WithAWS         bool     `long:"aws" description:"Make any AWS credentials set in the environment available to RUN commands"`
 	OIDC            string   `long:"oidc" description:"make credentials from oidc provider (currently only works with AWS) available to RUN commands"`

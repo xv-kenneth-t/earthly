@@ -18,9 +18,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/alessio/shellescape"
+	"al.essio.dev/pkg/shellescape"
 	"github.com/containerd/containerd/platforms"
-	"github.com/docker/distribution/reference"
+	"github.com/distribution/reference"
 	"github.com/earthly/cloud-api/logstream"
 	"github.com/earthly/earthly/analytics"
 	"github.com/earthly/earthly/ast/commandflag"
@@ -639,6 +639,7 @@ type ConvertRunOpts struct {
 	NoNetwork            bool
 	Push                 bool
 	Transient            bool
+	WithGPG              bool
 	WithSSH              bool
 	NoCache              bool
 	Interactive          bool
@@ -2114,6 +2115,9 @@ func (c *Converter) internalRun(ctx context.Context, opts ConvertRunOpts) (pllb.
 		if len(opts.Mounts) != 0 {
 			return pllb.State{}, errors.New("mounts not supported with LOCALLY")
 		}
+		if opts.WithGPG {
+			return pllb.State{}, errors.New("--gpg not supported with LOCALLY")
+		}
 		if opts.WithSSH {
 			return pllb.State{}, errors.New("--ssh not supported with LOCALLY")
 		}
@@ -2167,6 +2171,7 @@ func (c *Converter) internalRun(ctx context.Context, opts ConvertRunOpts) (pllb.
 		strIf(opts.RawOutput, "--raw-output "),
 		strIf(opts.Privileged, "--privileged "),
 		strIf(opts.Push, "--push "),
+		strIf(opts.WithGPG, "--gpg "),
 		strIf(opts.WithSSH, "--ssh "),
 		strIf(opts.NoCache, "--no-cache "),
 		strIf(opts.NoNetwork, "--network=none "),
@@ -2286,6 +2291,17 @@ func (c *Converter) internalRun(ctx context.Context, opts ConvertRunOpts) (pllb.
 		debuggerMount := pllb.AddMount(debuggerPath, pllb.Scratch(),
 			llb.HostBind(), llb.SourcePath("/usr/bin/earth_debugger"))
 		runOpts = append(runOpts, debuggerSecretMount, debuggerMount)
+
+		if opts.WithGPG {
+			// TODO: we probably should check if the socket id exists in socketprovider
+			// to reduce errors from sockets that go to nowhere
+			runOpts = append(runOpts,
+				llb.SocketTarget("earthly_gpg", "/var/run/earthly_gpg", 0600, 0, 0),
+				llb.AddEnv("GPG_AGENT_SOCK", "/var/run/earthly_gpg"),
+				llb.AddEnv("GPG_AGENT_INFO", "/var/run/earthly_gpg:0:1"),
+			)
+		}
+
 		if opts.WithSSH {
 			runOpts = append(runOpts, llb.AddSSHSocket())
 		}

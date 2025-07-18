@@ -41,13 +41,6 @@ func (a *Build) buildFlags() []cli.Flag {
 			Destination: &a.secretFiles,
 		},
 		&cli.StringSliceFlag{
-			Name:        "socket",
-			Aliases:     []string{"k"},
-			EnvVars:     []string{"EARTHLY_SOCKETS"},
-			Usage:       "A socket override, specified as <key>=[<value>]",
-			Destination: &a.sockets,
-		},
-		&cli.StringSliceFlag{
 			Name:        "cache-from",
 			EnvVars:     []string{"EARTHLY_CACHE_FROM"},
 			Usage:       "Remote docker image tags to use as readonly explicit cache (experimental)",
